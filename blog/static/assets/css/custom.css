@@ -1,0 +1,290 @@
+/**
+ *
+ * Apply your custom CSS here
+ *
+*/
+
+body {
+}
+
+a {
+   font-size:13px;
+}
+a:hover {
+    color: #036;
+}
+/*修改头像 */
+
+.uploadWallpaperButton
+	{
+		height: 31px;
+		width: 101px;
+		cursor: pointer;
+		margin: 5px;
+		-moz-border-radius: 5px;
+		-khtml-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		position: relative;
+		background: url(../images/user-4.png) no-repeat;
+		cursor: pointer;
+	}
+.f
+	{
+		cursor: pointer;
+		opacity: 0;
+		filter: alpha(opacity=0);
+		overflow: hidden;
+		font-size: 90px;
+		position: absolute;
+		width: 90px;
+		height: 80px;
+		margin-top:-2px;
+		margin-left:55px;
+	}
+.bdyun_last_time,.bdyun_join_time{
+	font-size:12px;
+	margin-left:-10px;
+	margin-top:25px;
+	}
+.bdyun_time{
+	font-size:14px;
+	}
+.bdyun_top_submit{
+	width:auto;
+	height:100px;
+	background-color:#ffffff;
+	margin-top:570px;
+	}
+.bdyun_reset{
+	margin-right:20px;
+
+	}
+.bdyun_hover a{
+	color:#555657;
+}
+.bdyun_hover a:hover{
+	color:green;
+}
+#example-1 td {
+	align-content:center;
+}
+/*.login-page .login-form .form-group .form-control.error{ border: 1px solid #e4af48;color:#e4af48}
+.login-page .login-form .form-group label.error{color:#e4af48}
+*/
+.login-page .login-form .form-group .form-control.error{ border: 1px solid #cc3f44;color:#cc3f44}
+.login-page .login-form .form-group label.error{color:#cc3f44}
+
+/*.toast-error{
+	height:100px;
+}*/
+.shop_qh{
+	width: 200px;
+	height: 20px;
+
+	margin-left: 60px;
+}
+
+.shop_qh a:hover{
+	text-decoration-line: underline;
+	text-decoration: underline;
+
+}
+
+
+/*  切换商铺 */
+.theme-buy {
+	margin-top:10%;
+	text-align: center;
+}
+.theme-gobuy, .theme-signin {
+	font-size: 15px;
+}
+.theme-price {
+	position: relative;
+	bottom: -6px;
+	font-family: microsoft yahei, Arial, Helvetica, sans-serif;
+	margin-right: 20px;
+	font-weight: bold;
+	color: #f60;
+	line-height: 32px;
+	font-size: 24px;
+	display: inline-block;
+}
+.theme-price dfn {
+	font-style: normal;
+	font-size: 18px;
+	margin-right: 2px;
+}
+.theme-desc {
+	padding: 30px;
+}
+.theme-version {
+	padding: 30px;
+}
+.theme-popover-mask {
+	z-index: 9998;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity:0.4;
+	filter:alpha(opacity=40);
+	display:none
+}
+.theme-popover {
+	z-index:9999;
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:660px;
+	height:360px;
+	margin:-180px 0 0 -330px;
+	border-radius:5px;
+	border:solid 2px #666;
+	background-color:#fff;
+	display:none;
+	box-shadow: 0 0 10px #666;
+}
+.theme-poptit {
+	border-bottom:1px solid #ddd;
+	padding:12px;
+	position: relative;
+}
+.theme-popbod {
+	padding:60px 15px;
+	color:#444;
+	height: 148px;
+}
+.theme-popbom {
+	padding:15px;
+	background-color:#f6f6f6;
+	border-top:1px solid #ddd;
+	border-radius:0 0 5px 5px;
+	color:#666
+}
+.theme-popbom a {
+	margin-left:8px
+}
+.theme-poptit .close {
+	float:right;
+	color:#999;
+	padding:5px;
+	margin:-2px -5px -5px;
+	font:bold 14px/14px simsun;
+	text-shadow:0 1px 0 #ddd
+}
+.theme-poptit .close:hover {
+	color:#444;
+}
+.btn.theme-reg {
+	position: absolute;
+	top: 8px;
+	left: 43%;
+	display: none
+}
+.inp-gray, .feed-mail-inp {
+	border:1px solid #ccc;
+	background-color:#fdfdfd;
+	width:220px;
+	height:16px;
+	padding:4px;
+	color:#444;
+	margin-right:6px
+}
+.dform {
+	padding:80px 60px 40px;
+	text-align: center;
+}
+.dform .ipt_error {
+	background-color:#FFFFCC;
+	border-color:#FFCC66
+}
+.dform-tip {
+	display:none;
+	background-color:#080;
+	color:#fff;
+	line-height:42px;
+	margin-top:10px;
+	font-size: 14px;
+}
+.dform-tip-errer {
+	background-color: #CF301A;
+}
+.dform-tip a {
+	display: inline-block;
+	padding: 0 20px;
+	margin-left:10px;
+	background-color: #FFE924;
+	color: #CF301A;
+}
+.dform-login {
+	padding:0;
+	height: 270px;
+	overflow: hidden;
+}
+.dform-login iframe {
+	height: 470px;
+	margin-top: -180px;
+}
+.theme-signin {
+	margin: -50px -20px -50px 90px;
+	text-align:left;
+	font-size: 14px;
+}
+.theme-signin h4 {
+	color:#999;
+	font-weight:100;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+.theme-signin li {
+	padding-left: 80px;
+	margin-bottom: 15px;
+}
+.theme-signin li strong {
+	float: left;
+	margin-left: -80px;
+	width: 80px;
+	text-align: right;
+	line-height: 32px;
+}
+.theme-signin .btn {
+	margin-bottom: 10px;
+}
+.theme-signin p {
+	font-size: 12px;
+	color: #999;
+}
+.theme-desc, .theme-version {
+	padding-top: 0
+}
+
+
+/* 弹框 */
+button::-moz-focus-inner{ border:0; padding:0; margin:0; }
+
+.easyDialog_wrapper{ width:380px; color:#444; border:3px solid rgba(0,0,0,0); -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -webkit-box-shadow:0 0 10px rgba(0,0,0,0.4); -moz-box-shadow:0 0 10px rgba(0,0,0,0.4); box-shadow:0 0 10px rgba(0,0,0,0.4); display:none; font-family:"Microsoft yahei", Arial; }
+
+.easyDialog_wrapper .easyDialog_content{ -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; background:#fff; border:1px solid #e5e5e5; }
+
+.easyDialog_wrapper .easyDialog_title{ height:35px;line-height:30px; overflow:hidden; color:#666; padding:0 15px; font-size:14px; border-bottom:1px solid #e5e5e5; background:#f7f7f7; border-radius:4px 4px 0 0; }
+
+.easyDialog_wrapper .close_btn{ font-family:arial;  font-size:18px; _font-size:12px; font-weight:700; color:#999; text-decoration:none; float:right; }
+
+.easyDialog_wrapper .close_btn:hover{ color:#333; }
+
+.easyDialog_wrapper .easyDialog_text{ padding:25px 10px; font-size:13px; line-height:22px; }
+
+.easyDialog_wrapper .easyDialog_footer{ padding:0 10px; *zoom:1; }
+
+.easyDialog_wrapper .easyDialog_footer:after{ content:''; display:block; height:0; overflow:hidden; visibility:hidden; clear:both; }
+
+.easyDialog_wrapper .btn_highlight,
+.easyDialog_wrapper .btn_normal{ border:1px solid; border-radius:2px; cursor:pointer; font-family:"Microsoft yahei", Arial; float:right; font-size:12px; padding:0 12px; height:24px; line-height:24px; margin-bottom:10px; }
+
+.easyDialog_wrapper .btn_highlight{background:#40bbea;width: 80px;border-color:#40bbea; height: 30px; background:-webkit-gradient(linear,center bottom,center top,from(#40bbea),to(#40bbea)); background:-moz-linear-gradient(90deg, #4787ed, #4d90fe); color:#fff; }
+
+.easyDialog_wrapper .btn_normal{ margin-left:10px; border-color:#e4e4e4; width: 80px;height: 30px; background:#ececec; color:#333; background:-webkit-gradient(linear,center bottom,center top,from(#ececec),to(#f4f4f4)); background:-moz-linear-gradient(90deg,#ececec,#f4f4f4); }

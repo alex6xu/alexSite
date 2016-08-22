@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+   {% load staticfiles %}
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Xenon Boostrap Admin Panel" />
+	<meta name="author" content="" />
+
+	<title>博达云WiFi商户服务平台登陆页面</title>
+
+{#    <link rel="stylesheet" href="{% static 'assets/css/xenon-components.css'%}">#}
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">
+	<link rel="stylesheet" href="{% static 'assets/css/xenon-core.css'%}">
+	<link rel="stylesheet" href="{% static 'assets/css/xenon-forms.css'%}">
+
+	<link rel="stylesheet" href="{% static 'assets/css/xenon-skins.css'%}">
+	<link rel="stylesheet" href="{% static 'assets/css/custom.css'%}">
+
+	<script src="{% static 'assets/js/jquery-1.11.1.min.js'%}"></script>
+
+
+</head>
+<body class="page-body login-page">
+
+
+	<div class="login-container" >
+
+		<div class="row">
+
+			<div class="col-sm-15">
+
+				<script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+                        $.validator.addMethod('login_username', function (value) {
+                        return /^\s*[a-zA-Z]{1}([a-zA-Z0-9]|[_]){2,19}\s*$/.test(value);
+                        }, '输入3-20个，以字母开头，可以字母、数字、空格,_');
+
+                        $.validator.addMethod('login_password', function (value) {
+                        return /^[a-zA-Z]{1}([\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]){4,19}$/.test(value);
+                        }, '输入5-20个，以字母开头');
+
+						// Reveal Login form
+						setTimeout(function(){ $(".fade-in-effect").addClass('in'); }, 1);
+						// Validation and Ajax action
+						$("form#login").validate({
+							rules: {
+								username: {
+									required: true,
+                                    login_username:'输入3-20个，以字母开头，可以字母、数字、_'
+								},
+
+								passwd: {
+									required: true,
+                                    login_password:'输入5-20个，以字母开头'
+								}
+							},
+
+							messages: {
+								username: {
+									required: '请输入用户名'
+								},
+
+								passwd: {
+                                    required: '密码不能空'
+								}
+
+							},
+
+                            submitHandler: function(form)
+							{
+								var opts = {
+									"closeButton": true,
+									"debug": false,
+									"positionClass": "toast-top-full-width",
+									"onclick": null,
+									"showDuration": "300",
+									"hideDuration": "1000",
+									"timeOut": "5000",
+									"extendedTimeOut": "1000",
+									"showEasing": "swing",
+									"hideEasing": "linear",
+									"showMethod": "fadeIn",
+									"hideMethod": "fadeOut"
+								};
+
+								$.ajax({
+									url: "/blog/login",
+									method: 'POST',
+									dataType: 'json',
+									data: {
+										do_login: true,
+										username: $(form).find('#username').val().replace(/(^\s*)|(\s*$)/g, ""),
+										passwd: $(form).find('#passwd').val().replace(/(^\s*)|(\s*$)/g, "")
+									},
+									success: function(result){
+                                        if (result.res==1){
+                                             //alert('登陆成功!');
+                                           show_loading_bar({
+                                            delay: .5,
+                                            pct: 100,
+                                            finish: function() {
+                                                window.location.href = "/blog/index.html"
+                                            }
+                                           });
+                                         }else if(result.res==0){
+                                             //alert("密码不正确");
+                                             //toastr.error("密码不正确", "Error", opts);
+                                             //$passwd.select();
+                                             $(".errors-container").html('<div class="alert alert-danger">\
+                                                <button type="button" class="close" data-dismiss="alert">\
+                                                    <span aria-hidden="true">&times;</span>\
+                                                    <span class="sr-only">Close</span>\
+                                                </button>\
+                                                ' + "密码不正确" + '\
+                                            </div>');
+                                           $(".errors-container .alert").hide().slideDown();
+                                            $(form).find('#passwd').select();
+
+                                         }else if(result.res==2){
+                                             //alert("用户名不存在");
+                                            // toastr.error("用户名不存在", "Error", opts);
+
+                                           $(".errors-container").html('<div class="alert alert-danger">\
+                                                <button type="button" class="close" data-dismiss="alert">\
+                                                    <span aria-hidden="true">&times;</span>\
+                                                    <span class="sr-only">Close</span>\
+                                                </button>\
+                                                ' + "用户名不存在" + '\
+                                            </div>');
+                                           $(".errors-container .alert").hide().slideDown();
+                                            $(form).find('#passwd').select();
+                                         }else if(result.res==3){
+                                            $(".errors-container").html('<div class="alert alert-danger">\
+                                                <button type="button" class="close" data-dismiss="alert">\
+                                                    <span aria-hidden="true">&times;</span>\
+                                                    <span class="sr-only">Close</span>\
+                                                </button>\
+                                                ' + "审核失败，请重新注册商铺" + '\
+                                            </div>');
+                                           $(".errors-container .alert").hide().slideDown();
+                                        }else if(result.res==4){
+                                             $(".errors-container").html('<div class="alert alert-danger">\
+                                                <button type="button" class="close" data-dismiss="alert">\
+                                                    <span aria-hidden="true">&times;</span>\
+                                                    <span class="sr-only">Close</span>\
+                                                </button>\
+                                                ' + "等待审核中..." + '\
+                                            </div>');
+                                           $(".errors-container .alert").hide().slideDown();
+                                        }else if(result.res==4){
+                                             $(".errors-container").html('<div class="alert alert-danger">\
+                                                <button type="button" class="close" data-dismiss="alert">\
+                                                    <span aria-hidden="true">&times;</span>\
+                                                    <span class="sr-only">Close</span>\
+                                                </button>\
+                                                ' + "系统错误" + '\
+                                            </div>');
+                                           $(".errors-container .alert").hide().slideDown();
+                                        }
+
+
+                                   }
+
+								});
+
+							}
+						});
+
+						// Set Form focus
+					//	$("form#login .form-group:has(.form-control):first .form-control").focus();
+					});
+
+				</script>
+
+				<!-- Errors container -->
+				<div class="errors-container">
+
+
+				</div>
+				<!-- Add class "fade-in-effect" for login form effect -->
+				<form  method="post" role="form" id="login" class="login-form fade-in-effect">
+                   {% csrf_token %}
+					<div class="login-header">
+{#						<a href="#" class="logo">#}
+{#							<img src="../../static/assets/images/logo-white-bg.png" alt="" width="80" />#}
+{#						    	<span>登陆</span>#}
+{#						</a>#}
+
+						<p>欢迎登陆alex的博客</p>
+					</div>
+
+
+					<div class="form-group">
+						<label class="control-label" for="username">用户名</label>
+						<input type="text" class="form-control input-dark"  name="username" id="username"  value=" " autocomplete="off" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="passwd">密码</label>
+						<input type="password" class="form-control input-dark" name="passwd" id="passwd" autocomplete="off" />
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-dark  btn-block text-left">
+							<i class="fa-lock"></i>
+							登陆
+						</button>
+					</div>
+                   <span style="float: right;margin-top: -10px;">
+                       <a href="" style="color:#fff;text-decoration:none;">没有账号,去<span style="color: green">注册</span></a>
+                   </span>
+                   <!--<span style="float: right;"><a href="change_password.html" style="color:#fff;;text-decoration:underline;">忘记密码？</a></span>
+				     -->
+				</form>
+				<!-- External login -->
+				<div class="external-login">
+					<a href="#" class="facebook">
+						<i class="fa-facebook"></i>
+						Alex 的博客
+					</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+	<!-- Bottom Scripts -->
+	<script src="../../static/assets/js/bootstrap.min.js"></script>
+	<script src="../../static/assets/js/TweenMax.min.js"></script>
+	<script src="../../static/assets/js/resizeable.js"></script>
+	<script src="../../static/assets/js/joinable.js"></script>
+	<script src="../../static/assets/js/xenon-api.js"></script>
+	<script src="../../static/assets/js/xenon-toggles.js"></script>
+	<script src="../../static/assets/js/jquery-validate/jquery.validate.min.js"></script>
+{#	<script src="../../static/assets/js/toastr/toastr.min.js"></script>#}
+
+
+	<!-- JavaScripts initializations and stuff -->
+{#	<script src="../../static/assets/js/xenon-custom.js"></script>#}
+{##}
+{#    <link rel="stylesheet" href="{% static 'assets/js/datatables/dataTables.bootstrap.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'assets/js/select2/select2.css' %}">#}
+{#	<link rel="stylesheet" href="{% static 'assets/js/select2/select2-bootstrap.css' %}">#}
+{#	<link rel="stylesheet" href="{% static 'assets/js/multiselect/css/multi-select.css' %}">#}
+    <!-- use for jquery-validate of our chinese message-->
+{#    <script src="{% static 'assets/js/jquery-validate/jquery.validate.min.js'%}"></script>#}
+{#    <script src="{% static 'assets/js/jquery-validate/localization/messages_zh.min.js'%}" ></script>#}
+
+	<!-- Bottom Scripts -->
+{#    <script src="{% static 'assets/js/jquery-ui/jquery-ui.min.js'%}"></script>#}
+{#	<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/TweenMax.min.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/resizeable.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/joinable.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/xenon-api.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/xenon-toggles.js' %}"></script>#}
+{##}
+{#    <script src="{% static 'assets/js/timepicker/bootstrap-timepicker.min.js' %}"></script>#}
+{##}
+{#    <script src="{% static 'assets/js/datatables/js/jquery.dataTables.min.js' %}"></script>#}
+{##}
+{#    <script src="{% static 'assets/js/select2/select2.min.js'%}"></script>#}
+{##}
+{#	<!-- Imported scripts on this page -->#}
+{#	<script src="{% static 'assets/js/xenon-widgets.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/devexpress-web-14.1/js/globalize.min.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/devexpress-web-14.1/js/dx.chartjs.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/toastr/toastr.min.js' %}"></script>#}
+{##}
+{#    <script src="{% static 'assets/js/datatables/dataTables.bootstrap.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/datatables/yadcf/jquery.dataTables.yadcf.js' %}"></script>#}
+{#	<script src="{% static 'assets/js/datatables/tabletools/dataTables.tableTools.min.js' %}"></script>#}
+{#    <script src="{% static 'assets/js/selectboxit/jquery.selectBoxIt.min.js' %}"></script>#}
+{#    <script src="{% static 'assets/js/multiselect/js/jquery.multi-select.js' %}"></script>#}
+{#	<!-- JavaScripts initializations and stuff -->#}
+{#	<script src="{% static 'assets/js/xenon-custom.js' %}"></script>#}
+
+</body>
+</html>

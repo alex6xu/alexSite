@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    {% load staticfiles %}
+<meta charset="utf-8">
+<title>响应式个人博客模板</title>
+<meta name="keywords" content="个人博客,个人博客模板,响应式,响应式博客模板" />
+<meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+<link href="{% static 'css/base.css'%}" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="{% static 'js/modernizr.js'%}"></script>
+<![endif]-->
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1 id="logo"><a href="/"><img src="{% static 'images/logo.jpg'%}" width="260" height="60" alt="杨青个人博客"></a></h1>
+    <nav>
+      <ul>
+        <li id="active"><a href="#">网站首页</a></li>
+        <li><a href="">关于我</a></li>
+        <li><a href="">慢生活</a></li>
+        <li><a href="">碎言碎语</a></li>
+        <li><a href="">模板分享</a></li>
+        <li><a href="">学无止境</a></li>
+        <li><a href="">留言版</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
