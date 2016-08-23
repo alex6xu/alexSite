@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^aboutme', LoginView.as_view(),name='aboutme'),
     url(r'^register', UserRegister.as_view(),name='register'),
     url(r'^add', AddEssay.as_view(),name='addessay'),
-    url(r'^showlist', ShowPageList.as_view(),name='showPageList')
+    url(r'^showlist', ShowPageList.as_view(),name='showPageList'),
+    # url(r'^(?P<username>(\w+))',showUser, name='showUser'),
 ]

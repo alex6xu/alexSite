@@ -15,12 +15,13 @@ from django.template import RequestContext
 from django import forms
 
 class RegisterForm(forms.Form):
-  username = forms.CharField()
-  email = forms.EmailField()
-  password = forms.CharField(widget=forms.PasswordInput)
-  password2= forms.CharField(label='Confirm',widget=forms.PasswordInput)
-  def is_validate(self):
-    return self.password==self.password2
+    username = forms.CharField()
+    email = forms.EmailField()
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2= forms.CharField(label='Confirm',widget=forms.PasswordInput)
+    def is_validate(self):
+        return self.data['password1'] == self.data['password2']
+
 
 # Create your views here.
 class IndexView(View):
@@ -60,28 +61,28 @@ class UserRegister(View):
                     print 'pwd not same'
                     return render_to_response("register.html",RequestContext(request,{'curtime':curtime,'username':username,'email':email,'errors':errors}))
 
-                filterResult = User.objects.filter(username=username)#c************
+                filterResult = User.objects.filter(username=username)
                 if len(filterResult)>0:
                     errors.append("用户名已存在")
                     return render_to_response("register.html",RequestContext(request,{'curtime':curtime,'username':username,'email':email,'errors':errors}))
 
                 print 'save user to db before'
-                user=User()#d************************
+                user=User()
                 user.username=username
                 user.set_password(password1)
                 user.email=email
                 user.save()
                 print 'saved user info to db'
                 #用户扩展信息 profile
-                # profile=AuthUser()#e*************************
+                # profile=AuthUser()
                 # profile.user_id=user.id
                 # profile.phone=phone
                 # profile.save()
                 #登录前需要先验证
-                newUser=auth.authenticate(username=username,password=password1)#f***************
+                newUser=auth.authenticate(username=username,password=password1)
                 if newUser is not None:
                     auth.login(request, newUser)#g*******************
-                    return HttpResponseRedirect("/user")
+                    return HttpResponseRedirect("/blog/index")
         except Exception,e:
             errors.append(str(e))
             return render_to_response("register.html",RequestContext(request,{'curtime':curtime,'username':username,'email':email,'errors':errors}))
@@ -148,3 +149,6 @@ class AddEssay(View):
 
         jstr={'result' : 'ok'}
         return HttpResponse(jstr)
+
+def showUser(username):
+    return HttpResponse('hello, %s' % username)

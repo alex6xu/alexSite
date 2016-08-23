@@ -20,6 +20,7 @@ class Article(models.Model):
     tag = models.ManyToManyField(Tag, blank=True)  # 博客标签 可为空
     date_time = models.DateTimeField(auto_now_add = True)  #博客日期
     content = models.TextField(blank = True, null = True)  #博客文章正文
+    count = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         path = reverse('detail', kwargs={'id':self.id})
