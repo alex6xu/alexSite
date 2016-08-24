@@ -186,3 +186,8 @@ class AddComment(View):
 
     def post(self,request):
         pass
+
+
+def showDetail(request):
+    #show page detail and add artical count
+    pass
