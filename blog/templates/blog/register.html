@@ -7,13 +7,16 @@
 <body>
     <form name="register" action="register" method="post">
         {% csrf_token %}
-        用户名：<input id="username" name="username" type="text"><br>
-        密码：  <input id="pwd" name="pwd" type="password"><br>
-        重复密码：<input id="pwd2" type="password" name="pwd2"><br>
-        phone : <input id="phone" name="phone" type="text"><br>
-        email : <input id="email" name="email" type="text"><br>
+{#        用户名：<input id="username" name="username" type="text"><br>#}
+{#        密码：  <input id="pwd" name="pwd" type="password"><br>#}
+{#        重复密码：<input id="pwd2" type="password" name="pwd2"><br>#}
+{#        phone : <input id="phone" name="phone" type="text"><br>#}
+{#        email : <input id="email" name="email" type="text"><br>#}
+        {{ form }}
         <input type="submit" >
     </form>
-
+{% if errors %}
+    errors
+{% endif %}
 </body>
 </html>

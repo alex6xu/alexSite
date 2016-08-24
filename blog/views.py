@@ -13,14 +13,20 @@ import time
 from django.template import RequestContext
 # from myuser.models import *
 from django import forms
+from captcha.fields import CaptchaField
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField()
+    captcha = CaptchaField()
+
 
 class RegisterForm(forms.Form):
     username = forms.CharField()
     email = forms.EmailField()
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2= forms.CharField(label='Confirm',widget=forms.PasswordInput)
-    def is_validate(self):
-        return self.data['password1'] == self.data['password2']
+    captcha = CaptchaField()
 
 
 # Create your views here.
@@ -31,66 +37,51 @@ class IndexView(View):
 
 class UserRegister(View):
     def get(self,requset):
-
-        return render(requset,'blog/register.html')
+        rform= RegisterForm()
+        return render(requset,'blog/register.html', {'form':rform})
 
     def post(self,request):
         print 'post register start'
         curtime=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 
-        # if request.user.is_authenticated():#a*******************
+        # if request.user.is_authenticated():
         #     print 'user authenticated !'
         #     return HttpResponseRedirect("/user")
         try:
-            if request.method=='POST':
-                print 'get post params '
-                username=request.POST.get('username','')
-                password1=request.POST.get('pwd','')
-                password2=request.POST.get('pwd2','')
-                email=request.POST.get('email','')
-                phone=request.POST.get('phone','')
-                errors=[]
+            # print 'get post params '
+            errors = ''
+            rf = RegisterForm(request.POST)
+            username = rf.data['username']
+            password = rf.data['password1']
 
-                registerForm = RegisterForm({'username':username,'password1':password1,'password2':password2,'email':email})#b********
-                if not registerForm.is_validate():
-                    errors.extend(registerForm.errors.values())
-                    print 'register not valid'
-                    return render_to_response("register.html",RequestContext(request,{'curtime':curtime,'username':username,'email':email,'errors':errors}))
-                if password1!=password2:
-                    errors.append("两次输入的密码不一致!")
-                    print 'pwd not same'
-                    return render_to_response("register.html",RequestContext(request,{'curtime':curtime,'username':username,'email':email,'errors':errors}))
 
-                filterResult = User.objects.filter(username=username)
-                if len(filterResult)>0:
-                    errors.append("用户名已存在")
-                    return render_to_response("register.html",RequestContext(request,{'curtime':curtime,'username':username,'email':email,'errors':errors}))
+            if not rf.is_valid():
+                errors = 'register not valid'
+                return render_to_response("blog/success.html",RequestContext(request,{'curtime':curtime,'errors':errors}))
 
-                print 'save user to db before'
-                user=User()
-                user.username=username
-                user.set_password(password1)
-                user.email=email
-                user.save()
-                print 'saved user info to db'
-                #用户扩展信息 profile
-                # profile=AuthUser()
-                # profile.user_id=user.id
-                # profile.phone=phone
-                # profile.save()
-                #登录前需要先验证
-                newUser=auth.authenticate(username=username,password=password1)
-                if newUser is not None:
-                    auth.login(request, newUser)#g*******************
-                    return HttpResponseRedirect("/blog/index")
+            filterResult = User.objects.filter(username=username)
+            if len(filterResult)>0:
+                errors = "用户名已存在"
+                return render_to_response("blog/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
+
+            # print 'save user to db before'
+            user=User()
+            user.username=username
+            user.set_password(password)
+            user.email=rf.data['email']
+            user.save()
+            print 'saved user info to db'
+
+            newUser=auth.authenticate(username=username,password=password)
+            if newUser is not None:
+                auth.login(request, newUser)
+                return HttpResponseRedirect("/blog/index")
         except Exception,e:
-            errors.append(str(e))
-            return render_to_response("register.html",RequestContext(request,{'curtime':curtime,'username':username,'email':email,'errors':errors}))
+            errors = e
+            return render_to_response("blog/success.html",RequestContext(request,{'curtime':curtime,'errors':errors}))
 
-        return render_to_response("register.html",RequestContext(request,{'curtime':curtime}))
+        return render_to_response("blog/success.html",RequestContext(request,{'curtime':curtime}))
 
-        # jstr = {'result':1}
-        # return HttpResponse(jstr)
 
 class LoginView(View):
     def get(self,request):
