@@ -14,23 +14,27 @@ from django.template import RequestContext
 # from myuser.models import *
 from django import forms
 from captcha.fields import CaptchaField
+from django.contrib.auth.decorators import login_required
+from models import Article
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField()
-    captcha = CaptchaField()
+    username = forms.CharField(label='用户名')
+    password = forms.CharField(label='密码')
+    captcha = CaptchaField(label='验证码')
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField()
-    email = forms.EmailField()
-    password1 = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(label='用户名')
+    email = forms.EmailField(label='email')
+    password1 = forms.CharField(label='密码', widget=forms.PasswordInput)
     password2= forms.CharField(label='Confirm',widget=forms.PasswordInput)
-    captcha = CaptchaField()
+    phone = forms.CharField(label='phone')
+    captcha = CaptchaField(label='验证码')
 
 
 # Create your views here.
 class IndexView(View):
+    # @login_required
     def get(self,request):
 
         return render(request, 'blog/index.html')
@@ -45,12 +49,9 @@ class UserRegister(View):
         curtime=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 
         try:
-            # print 'get post params '
-            errors = ''
             rf = RegisterForm(request.POST)
             username = rf.data['username']
             password = rf.data['password1']
-
 
             if not rf.is_valid():
                 errors = 'register not valid'
@@ -66,6 +67,7 @@ class UserRegister(View):
             user.username=username
             user.set_password(password)
             user.email=rf.data['email']
+            user.last_name = rf.data['phone']
             user.save()
             print 'saved user info to db'
 
@@ -87,29 +89,43 @@ class LoginView(View):
 
     def post(self,request):
 
-        username = request.POST.get('username')
-        password = request.POST.get('password')
         lf = LoginForm(request.POST)
         if not lf.is_valid():
             return HttpResponse({'res':0})
 
-        uu = {}
+        username = lf.data['username']
+        password = lf.data['password']
+        jstr = {}
         try:
             import pdb;pdb.set_trace()
             user = auth.authenticate(username=username, password=password)
             #user = User.objects.filter(username=username)
-
+            print 'user authenticated'
             if(user and user.is_active == 1):
                 auth.login(request,user)
                 result = 1
-
-                uu = {'res':result}
+                jstr = {'result':result}
                 # return HttpResponse(uu) #ajax
                 return HttpResponseRedirect('/blog/index')
+
+            elif(user and user.is_active != 1):
+                #注册用户未激活
+                errors = '注册用户未激活'
+                print errors
+                result = 2
+                jstr = {'result':result, 'msg':errors}
+                return HttpResponse(jstr)
+
+            elif user is None:
+                # 登录失败
+                result = 3
+                errors = '注册用户未激活'
+                print errors
+                jstr = {'result': result, 'msg': errors}
+                return HttpResponse(jstr)
         except Exception, e:
             print e
             return HttpResponse({'res':0})
-
 
 
 class AboutMe(View):
@@ -117,14 +133,18 @@ class AboutMe(View):
 
         return render(request,'blog/aboutme.html')
 
-class ShowPageList(View):
-    def get(self,request):
+@login_required
+def about_me(request):
+    return render(request, 'blog/aboutme.html')
 
-        return render(request,'')
+@login_required
+def showPageList(request):
+    if request.method == "GET":
+        user = request.user
+        rec = Article.objects.filter(author=user)
+        jsr = {'items':rec}
+        return render(request,'blog/showList.html', jsr)
 
-    def post(self,request):
-
-        return render(request,'')
 
 class AddEssay(View):
     def get(self,request):

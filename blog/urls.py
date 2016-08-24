@@ -8,9 +8,9 @@ from views import *
 urlpatterns = [
     url(r'^index', IndexView.as_view(),name='index'),
     url(r'^login', LoginView.as_view(),name='login'),
-    url(r'^aboutme', LoginView.as_view(),name='aboutme'),
+    url(r'^aboutme', about_me, name='aboutme'),
     url(r'^register', UserRegister.as_view(),name='register'),
     url(r'^add', AddEssay.as_view(),name='addessay'),
-    url(r'^showlist', ShowPageList.as_view(),name='showPageList'),
+    url(r'^showlist', showPageList,name='showPageList'),
     # url(r'^(?P<username>(\w+))',showUser, name='showUser'),
 ]

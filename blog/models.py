@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 # from django.contrib.sites.models import Site
 
 # Create your models here.
@@ -16,6 +17,7 @@ class Tag(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length = 100)  #博客题目
+    author = models.ForeignKey(User, default=1)
     category = models.CharField(max_length = 50, blank = True)  #博客分类 可为空
     tag = models.ManyToManyField(Tag, blank=True)  # 博客标签 可为空
     date_time = models.DateTimeField(auto_now_add = True)  #博客日期
