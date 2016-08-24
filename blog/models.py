@@ -34,3 +34,13 @@ class Article(models.Model):
 
     class Meta:
         ordering = ['-date_time']
+
+class Comment(models.Model):
+    """
+    评论
+    """
+    blog = models.ForeignKey(Article, verbose_name='博客')
+    name = models.CharField('称呼', max_length=16)
+    email = models.EmailField('邮箱')
+    content = models.CharField('内容', max_length=240)
+    created = models.DateTimeField('发布时间', auto_now_add=True)
