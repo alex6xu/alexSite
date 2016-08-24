@@ -44,9 +44,6 @@ class UserRegister(View):
         print 'post register start'
         curtime=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 
-        # if request.user.is_authenticated():
-        #     print 'user authenticated !'
-        #     return HttpResponseRedirect("/user")
         try:
             # print 'get post params '
             errors = ''
@@ -85,35 +82,33 @@ class UserRegister(View):
 
 class LoginView(View):
     def get(self,request):
-
-        return render(request,'blog/login.html')
+        lform = LoginForm()
+        return render(request,'blog/login.html', {'form': lform})
 
     def post(self,request):
 
         username = request.POST.get('username')
-        password = request.POST.get('passwd')
+        password = request.POST.get('password')
+        lf = LoginForm(request.POST)
+        if not lf.is_valid():
+            return HttpResponse({'res':0})
+
         uu = {}
         try:
+            import pdb;pdb.set_trace()
             user = auth.authenticate(username=username, password=password)
             #user = User.objects.filter(username=username)
 
             if(user and user.is_active == 1):
                 auth.login(request,user)
-                #if(user_pass):
                 result = 1
-                userid = user[0].id
-                last_login = user[0].last_login
-                is_superuser = user[0].is_superuser
-                first_name = user[0].first_name
-                last_name = user[0].last_name
-                email = user[0].email
-                uu = {'res':result, 'id':userid,'username': username ,'last_login':last_login,'is_superuser':is_superuser
-                          , 'first_name':first_name,'last_name':last_name,'email':email }
-                return HttpResponseRedirect('blog/index.html')
 
+                uu = {'res':result}
+                # return HttpResponse(uu) #ajax
+                return HttpResponseRedirect('/blog/index')
         except Exception, e:
             print e
-            return HttpResponseRedirect("blog/login.html")
+            return HttpResponse({'res':0})
 
 
 

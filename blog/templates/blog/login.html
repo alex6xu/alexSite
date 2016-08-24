@@ -8,17 +8,17 @@
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
 
-	<title>博达云WiFi商户服务平台登陆页面</title>
+	<title>服务平台登陆页面</title>
 
 {#    <link rel="stylesheet" href="{% static 'assets/css/xenon-components.css'%}">#}
-	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">
-	<link rel="stylesheet" href="{% static 'assets/css/xenon-core.css'%}">
-	<link rel="stylesheet" href="{% static 'assets/css/xenon-forms.css'%}">
-
-	<link rel="stylesheet" href="{% static 'assets/css/xenon-skins.css'%}">
-	<link rel="stylesheet" href="{% static 'assets/css/custom.css'%}">
-
-	<script src="{% static 'assets/js/jquery-1.11.1.min.js'%}"></script>
+{#	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css'%}">#}
+{#	<link rel="stylesheet" href="{% static 'assets/css/xenon-core.css'%}">#}
+{#	<link rel="stylesheet" href="{% static 'assets/css/xenon-forms.css'%}">#}
+{##}
+{#	<link rel="stylesheet" href="{% static 'assets/css/xenon-skins.css'%}">#}
+{#	<link rel="stylesheet" href="{% static 'assets/css/custom.css'%}">#}
+{##}
+{#	<script src="{% static 'assets/js/jquery-1.11.1.min.js'%}"></script>#}
 
 
 </head>
@@ -93,19 +93,19 @@
 									data: {
 										do_login: true,
 										username: $(form).find('#username').val().replace(/(^\s*)|(\s*$)/g, ""),
-										passwd: $(form).find('#passwd').val().replace(/(^\s*)|(\s*$)/g, "")
+										password: $(form).find('#password').val().replace(/(^\s*)|(\s*$)/g, "")
 									},
 									success: function(result){
                                         if (result.res==1){
-                                             //alert('登陆成功!');
-                                           show_loading_bar({
-                                            delay: .5,
-                                            pct: 100,
-                                            finish: function() {
-                                                window.location.href = "/blog/index.html"
-                                            }
+                                            alert('登陆成功!');
+                                            show_loading_bar({
+                                                delay: .5,
+                                                pct: 100,
+                                                finish: function() {
+                                                    window.location.href = "/blog/index"
+                                                }
                                            });
-                                         }else if(result.res==0){
+                                         }else {
                                              //alert("密码不正确");
                                              //toastr.error("密码不正确", "Error", opts);
                                              //$passwd.select();
@@ -114,52 +114,12 @@
                                                     <span aria-hidden="true">&times;</span>\
                                                     <span class="sr-only">Close</span>\
                                                 </button>\
-                                                ' + "密码不正确" + '\
+                                                ' + "错误" + '\
                                             </div>');
                                            $(".errors-container .alert").hide().slideDown();
                                             $(form).find('#passwd').select();
 
-                                         }else if(result.res==2){
-                                             //alert("用户名不存在");
-                                            // toastr.error("用户名不存在", "Error", opts);
-
-                                           $(".errors-container").html('<div class="alert alert-danger">\
-                                                <button type="button" class="close" data-dismiss="alert">\
-                                                    <span aria-hidden="true">&times;</span>\
-                                                    <span class="sr-only">Close</span>\
-                                                </button>\
-                                                ' + "用户名不存在" + '\
-                                            </div>');
-                                           $(".errors-container .alert").hide().slideDown();
-                                            $(form).find('#passwd').select();
-                                         }else if(result.res==3){
-                                            $(".errors-container").html('<div class="alert alert-danger">\
-                                                <button type="button" class="close" data-dismiss="alert">\
-                                                    <span aria-hidden="true">&times;</span>\
-                                                    <span class="sr-only">Close</span>\
-                                                </button>\
-                                                ' + "审核失败，请重新注册商铺" + '\
-                                            </div>');
-                                           $(".errors-container .alert").hide().slideDown();
-                                        }else if(result.res==4){
-                                             $(".errors-container").html('<div class="alert alert-danger">\
-                                                <button type="button" class="close" data-dismiss="alert">\
-                                                    <span aria-hidden="true">&times;</span>\
-                                                    <span class="sr-only">Close</span>\
-                                                </button>\
-                                                ' + "等待审核中..." + '\
-                                            </div>');
-                                           $(".errors-container .alert").hide().slideDown();
-                                        }else if(result.res==4){
-                                             $(".errors-container").html('<div class="alert alert-danger">\
-                                                <button type="button" class="close" data-dismiss="alert">\
-                                                    <span aria-hidden="true">&times;</span>\
-                                                    <span class="sr-only">Close</span>\
-                                                </button>\
-                                                ' + "系统错误" + '\
-                                            </div>');
-                                           $(".errors-container .alert").hide().slideDown();
-                                        }
+                                         }
 
 
                                    }
@@ -195,12 +155,25 @@
 
 					<div class="form-group">
 						<label class="control-label" for="username">用户名</label>
-						<input type="text" class="form-control input-dark"  name="username" id="username"  value=" " autocomplete="off" />
+                        <div class="form-control input-dark">
+                            {{ form.username }}
+                        </div>
+{#						<input type="text" class="form-control input-dark"  name="username" id="username"  value=" " autocomplete="off" />#}
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="passwd">密码</label>
-						<input type="password" class="form-control input-dark" name="passwd" id="passwd" autocomplete="off" />
+                        <div class="form-control input-dark">
+                            {{ form.password }}
+                        </div>
+{#						<input type="password" class="form-control input-dark" name="passwd" id="passwd" autocomplete="off" />#}
+					</div>
+                    <div class="form-group">
+						<label class="control-label" for="passwd">验证码</label>
+                        <div class="form-control input-dark">
+                            {{ form.captcha }}<br>
+                        </div>
+{#						<input type="password" class="form-control input-dark" name="passwd" id="passwd" autocomplete="off" />#}
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-dark  btn-block text-left">
@@ -232,13 +205,13 @@
 
 
 	<!-- Bottom Scripts -->
-	<script src="../../static/assets/js/bootstrap.min.js"></script>
-	<script src="../../static/assets/js/TweenMax.min.js"></script>
-	<script src="../../static/assets/js/resizeable.js"></script>
-	<script src="../../static/assets/js/joinable.js"></script>
-	<script src="../../static/assets/js/xenon-api.js"></script>
-	<script src="../../static/assets/js/xenon-toggles.js"></script>
-	<script src="../../static/assets/js/jquery-validate/jquery.validate.min.js"></script>
+{#	<script src="../../static/assets/js/bootstrap.min.js"></script>#}
+{#	<script src="../../static/assets/js/TweenMax.min.js"></script>#}
+{#	<script src="../../static/assets/js/resizeable.js"></script>#}
+{#	<script src="../../static/assets/js/joinable.js"></script>#}
+{#	<script src="../../static/assets/js/xenon-api.js"></script>#}
+{#	<script src="../../static/assets/js/xenon-toggles.js"></script>#}
+{#	<script src="../../static/assets/js/jquery-validate/jquery.validate.min.js"></script>#}
 {#	<script src="../../static/assets/js/toastr/toastr.min.js"></script>#}
 
 
