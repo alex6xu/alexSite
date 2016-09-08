@@ -3,21 +3,32 @@
 # @Date    : 2016-09-06
 # @Author  : Alex
 
-
 import re
 import urllib
 import urllib2
 import cookielib
 import random
-from bs4 import BeautifulSoup
 import time
+import logging
+import socket
+from bs4 import BeautifulSoup
+
+# import mysqldb
+
+socket.setdefaulttimeout(5)
+
+logging.basicConfig(level=logging.DEBUG,
+                format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                datefmt='%a, %d %b %Y %H:%M:%S',
+                filename='douban.log',
+                filemode='w')
 
 email = 'permike@163.com'
 password = 'BEwith1021'
 cookies_file = 'Cookies.txt'
 
 
-class douban_robot:
+class DoubanClient(object):
 
     def __init__(self):
         self.email = email
@@ -42,10 +53,10 @@ class douban_robot:
         try:
             self.cookie = cookielib.MozillaCookieJar()
             self.cookie.load(cookies_file)
-            print "loading cookies for file..."
+            logging.info( "loading cookies for file...")
         except Exception, e:
 
-            print "The cookies file is not exist."
+            logging.info( "The cookies file is not exist.")
             self.login_douban()
             # reload the cookies.
             self.load_cookies()
@@ -58,10 +69,10 @@ class douban_robot:
 
             if c.name == 'ck':
                 self.ck = c.value.strip('"')
-                print "ck:%s" % self.ck
+                logging.info( "ck:%s" % self.ck)
                 break
         else:
-            print 'ck is end of date.'
+            logging.info( 'ck is end of date.')
             self.login_douban()
             # #reload the cookies.
             self.cookie.revert(cookies_file)
@@ -84,7 +95,7 @@ class douban_robot:
         if imgurl:
             # urllib.urlretrieve(imgurl[0], 'captcha.jpg')
             print "The captcha_image url address is %s" % imgurl[0]
-
+            logging.info("The captcha_image url address is %s" % imgurl[0])
             # download the captcha_image file.
             # data = opener.open(imgurl[0]).read()
             # f = file("captcha.jpg","wb")
@@ -108,7 +119,7 @@ class douban_robot:
         # 登录成功
         cookieJar.save()
         if response.geturl() == "http://www.douban.com/":
-            print 'login success !'
+            logging.info( 'login success !')
             # update cookies, save cookies into file
             # cookieJar.save();
         else:
@@ -131,7 +142,7 @@ class douban_robot:
         request.add_header("Referer", post_url)
         response = self.opener.open(request, post_data)
         if response.geturl() == group_url:
-            print 'Okay, Success !'
+            logging.info( 'Okay, Success !')
             return True
         return False
 
@@ -200,43 +211,66 @@ class douban_robot:
 
         return title, content
 
-    def get_group_list(self):
-        group_url = "https://www.douban.com/group/" # + group_id + "/#topics"
-        html = self.opener.open(group_url).read()
+    def get_group_list(self, group_url):
+        try:
+            html = self.opener.open(group_url).read()
+        except Exception, e:
+            logging.warn('open group list [%s] failed' % group_url)
+            return None
+
         # print html
         soup = BeautifulSoup(html, 'lxml')
         # images = re.findall(r'<td class="td-subject">(.*?)</td>', html, re.DOTALL)
         subjects = soup.find_all("td",{'class':"td-subject"})
-        print 'get urls'
+        logging.info( 'get urls')
         # import pdb; pdb.set_trace()
         urls = [x.a.get('href') for x in subjects]
         return urls
 
     def download_pic(self, html):
-    # def download(html):
+        # def download(html):
         soup = BeautifulSoup(html, 'lxml')
-        i = 1
+        # i = 1
         download_img = None
         for k in soup.find_all('div', {'class': 'topic-figure cc'}):
             url = k.img.get('src')
             img_numlist = re.findall(r'p\d{8}', url)
             for img_num in img_numlist:
-                download_img = urllib.urlretrieve(url, 'download/%s.jpg' % img_num)
-                time.sleep(1)
-                i += 1
-                print(url)
+                try:
+                    download_img = urllib.urlretrieve(url, 'download/%s.jpg' % img_num)
+                except IOError, e:
+                    logging.warn(e)
+
+                # time.sleep(0.5)
+                # i += 1
+                logging.info(url)
 
         # return download_img
 
-    def run(self):
-        urls = self.get_group_list()
+    def crawler(self, group_url, num):
+        urls = self.get_group_list(group_url)
         for u in urls:
-            ht = self.opener.open(u).read()
+            try:
+                ht = self.opener.open(u).read()
+            except:
+                logging.warn('open topics [%s] failed ' % u)
+                continue
             self.download_pic(ht)
-        print 'download finished !'
+            logging.info( u + ' finished')
+            time.sleep(1)
+        logging.info('download  page %s finished !' % num)
 
-if __name__ == '__main__':
-    app = douban_robot()
+    def run(self):
+        # group_url = "https://www.douban.com/group/"
+        # self.crawler(group_url, 0)
+        for num in range(1000, 2000, 50):
+            group_url = "https://www.douban.com/group/" + "?start=%s" % num # + group_id + "/#topics"
+            self.crawler(group_url, num)
+
+
+
+def main():
+    app = DoubanClient()
 
     # titile, content = app.get_joke()
     # if titile and content:
@@ -246,5 +280,7 @@ if __name__ == '__main__':
     # app.talk_statuses('Hello.it\'s a test message using python.')
     # app.sofa("CentOS")
     app.run()
-    
 
+
+if __name__ == '__main__':
+    main()
