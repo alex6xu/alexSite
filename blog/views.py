@@ -160,7 +160,7 @@ def about_me(request):
 def showPageList(request):
     if request.method == "GET":
         user = request.user
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         rec = Article.objects.filter(author=user)
         jsr = {'items':rec}
         return render(request,'blog/showList.html', jsr)
