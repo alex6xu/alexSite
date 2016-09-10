@@ -1,14 +1,7 @@
-<header>
-    <h1 id="logo"><a href="/"><img src="{% static 'images/logo.jpg'%}" width="260" height="60" alt="alex个人博客"></a></h1>
-    <nav>
-      <ul>
-        <li id="active"><a href="#">网站首页</a></li>
-        <li><a href="">关于我</a></li>
-        <li><a href="">慢生活</a></li>
-        <li><a href="">碎言碎语</a></li>
-        <li><a href="">模板分享</a></li>
-        <li><a href="">学无止境</a></li>
-        <li><a href="">留言版</a></li>
-      </ul>
-    </nav>
-  </header>
+<header id="header">
+    {% load staticfiles %}
+    <a href="/blog/aboutme" class="image avatar"><img src="{% static 'images/avatar.jpg' %}" alt="" /></a>
+    <h1><strong>I am Alex</strong>, a super simple<br />
+    responsive site <br />
+    crafted by <a href="http://45.32.230.21:8080/blog/index">Alex Blog</a>.</h1>
+</header>
