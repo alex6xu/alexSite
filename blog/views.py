@@ -64,7 +64,7 @@ class IndexView(View):
 class UserRegister(View):
     def get(self,requset):
         rform= RegisterForm()
-        return render(requset, 'blog_bak/register.html', {'form':rform})
+        return render(requset, 'blog/register.html', {'form':rform})
 
     def post(self,request):
         print 'post register start'
@@ -77,12 +77,12 @@ class UserRegister(View):
 
             if not rf.is_valid():
                 errors = 'register not valid'
-                return render_to_response("blog_bak/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
+                return render_to_response("blog/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
 
             filterResult = User.objects.filter(username=username)
             if len(filterResult)>0:
                 errors = "用户名已存在"
-                return render_to_response("blog_bak/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
+                return render_to_response("blog/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
 
             # print 'save user to db before'
             user=User()
@@ -99,9 +99,9 @@ class UserRegister(View):
                 return HttpResponseRedirect("/blog/index")
         except Exception,e:
             errors = e
-            return render_to_response("blog_bak/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
+            return render_to_response("blog/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
 
-        return render_to_response("blog_bak/success.html", RequestContext(request, {'curtime':curtime}))
+        return render_to_response("blog/success.html", RequestContext(request, {'curtime':curtime}))
 
 
 class LoginView(View):
@@ -153,11 +153,11 @@ class LoginView(View):
 class AboutMe(View):
     def get(self,request):
 
-        return render(request, 'blog_bak/aboutme.html')
+        return render(request, 'blog/aboutme.html')
 
 @login_required
 def about_me(request):
-    return render(request, 'blog_bak/aboutme.html')
+    return render(request, 'blog/aboutme.html')
 
 @login_required
 def showPageList(request):
@@ -166,13 +166,13 @@ def showPageList(request):
         # import pdb;pdb.set_trace()
         rec = Article.objects.filter(author=user)
         jsr = {'items':rec}
-        return render(request, 'blog_bak/showList.html', jsr)
+        return render(request, 'blog/showList.html', jsr)
 
 
 class AddEssay(View):
     def get(self,request):
 
-        return render(request, 'blog_bak/add.html')
+        return render(request, 'blog/add.html')
 
     def post(self,request):
 

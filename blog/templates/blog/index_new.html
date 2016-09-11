@@ -16,13 +16,17 @@
 					<section id="one">
 						<header class="major">
 							<h2>{{ blog.title }}</h2>
+                            <div class="binfo">
+                                <span>{{ blog.date_time|date:"Y-m-d H:i" }}</span><span style="color: #0de730"> | </span>
+                                <span>{{ blog.author }}</span><span style="color: #0de730"> | </span>
+                                <span>{{ blog.category }}</span><span style="color: #0de730"> | </span>
+                            </div>
+
 						</header>
-						<span>{{ blog.category }}</span><span style="color: #0de730"> | </span>
-                        <span>{{ blog.author }}</span><span style="color: #0de730"> | </span>
-                        <span>{{ blog.date_time|date:"Y-m-d H:i" }}</span><span style="color: #0de730"> | </span>
-                        <p>{{ blog.content|truncatewords:80 }}</p>
+
+                        <blockquote>{{ blog.content|truncatewords:80 }}</blockquote>
                         <ul class="actions">
-							<li><a href="#" class="button small">Learn More</a></li>
+							<li><a href="#" class="button special small">Learn More</a></li>
 						</ul>
 					</section>
 
