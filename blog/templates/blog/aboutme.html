@@ -1,53 +1,40 @@
 <!doctype html>
- {% load staticfiles %}
+{% load staticfiles %}
 <meta charset="utf-8">
 <html>
+<!-- head -->
+    {% include 'blog/common/head.html' %}
 
-{#{% include 'blog/common/head.html' %}#}
+	<body id="top">
 
-<body>
-<div class="wrapper">
+		<!-- Header -->
+        {% include 'blog/common/header.html' %}
 
-{#{% include 'blog/common/header.html' %}#}
+		<!-- Main -->
+			<div id="main">
+                <section>
+{#                    <h4>Image</h4>#}
+{#                    <h5>Fit</h5>#}
+{#                    <div class="box alt">#}
+{#                        <div class="row 50% uniform">#}
+{#                            <div class="12u$"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>#}
+{#                            <div class="4u"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>#}
+{#                            <div class="4u"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>#}
+{#                            <div class="4u$"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>#}
+{#                            <div class="4u"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>#}
+{#                            <div class="4u"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>#}
+{#                            <div class="4u$"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>#}
+{#                            <div class="4u"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>#}
+{#                            <div class="4u"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>#}
+{#                            <div class="4u$"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>#}
+{#                        </div>#}
+{#                    </div>#}
+                    <h5>Left &amp; Right</h5>
+                    <p><span class="image left"><img src="{% static 'images/top.jpg' %}" alt="" /></span>
+                    this gay is so lazy that he left nothing .
+                    </p>
+                </section>
+            </div>
+    </body>
 
-{#{% include 'blog/common/bannerdiv.html' %}#}
-
-  <div class="mainContent">
-    <h2 class="title_tj">
-      <p>文章<span>列表</span></p>
-    </h2>
-    <div class="bloglist">
-      <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
-      <figure><img src="{% static 'images/ex03.png'%}"></figure>
-      <ul>
-        <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-      </ul>
-      <div class="dateview"><a title="/" href="#" target="_blank" class="readmore">阅读全文>></a><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></div>
-      <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
-      <figure><img src="{% static 'images/ex.jpg'%}"></figure>
-      <ul>
-        <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-      </ul>
-      <div class="dateview"><a title="/" href="#" target="_blank" class="readmore">阅读全文>></a><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></div>
-      <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
-      <figure><img src="{% static 'images/ex02.jpg'%}"></figure>
-      <ul>
-        <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-      </ul>
-      <div class="dateview"><a title="/" href="#" target="_blank" class="readmore">阅读全文>></a><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></div>
-      <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
-      <figure><img src="{% static 'images/ex03.png'%}"></figure>
-      <ul>
-        <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-      </ul>
-      <div class="dateview"><a title="/" href="#" target="_blank" class="readmore">阅读全文>></a><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></div>
-    </div>
-  </div>
-    <!--sidebar -->
-{#  {% include 'blog/common/sidebar.html' %}#}
-
-
-{#{% include 'blog/common/bottom.html' %}#}
-</div>
-</body>
 </html>
