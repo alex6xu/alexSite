@@ -23,8 +23,8 @@ logging.basicConfig(level=logging.DEBUG,
                 filename='douban.log',
                 filemode='w')
 
-email = 'permike@163.com'
-password = 'BEwith1021'
+email = '*****@163.com'
+password = '******'
 cookies_file = 'Cookies.txt'
 
 
