@@ -16,6 +16,10 @@ from django import forms
 from captcha.fields import CaptchaField
 from django.contrib.auth.decorators import login_required
 from models import Article
+import logging
+
+logger = logging.getLogger('django')
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='用户名')
@@ -55,11 +59,13 @@ class CommentForm(forms.Form):
 class IndexView(View):
     # @login_required
     def get(self,request):
-        user = request.user
-        # import pdb;pdb.set_trace()
-        rec = Article.objects.filter(author=user)
-        jsr = {'items': rec}
-        return render(request, 'blog/index_new.html', jsr)
+        # if request.getattr('user'):
+        # user = request.user
+        # # import pdb;pdb.set_trace()
+        # rec = Article.objects.filter(author=user)
+        logger.info('index view')
+        jsr = {} # {'items': rec}
+        return render(request, 'blog/index.html', jsr)
 
 class UserRegister(View):
     def get(self,requset):
