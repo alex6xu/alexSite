@@ -1,0 +1,5 @@
+django == 1.10
+django_simple_chaptcha
+beautifulsoup4==4.4.1
+lxml
+pillow
