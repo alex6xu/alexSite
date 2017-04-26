@@ -1,19 +1,18 @@
 # -*- coding:utf-8 -*-
 from django.shortcuts import render,render_to_response
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest,JsonResponse
-from django.views.decorators.csrf import csrf_protect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-from django import forms
-from django.contrib.sessions.models import Session
 from django.contrib import auth
 from django.contrib.auth.models import User
 import time
 from django.template import RequestContext
+# from django.views.decorators.csrf import csrf_protect
 # from myuser.models import *
-from django import forms
-from captcha.fields import CaptchaField
+# from django.utils.decorators import method_decorator
+# from django.views.decorators.csrf import csrf_exempt
+# from django import forms
+# from django.contrib.sessions.models import Session
+from forms import *
 from django.contrib.auth.decorators import login_required
 from models import Article
 import logging
@@ -21,51 +20,12 @@ import logging
 logger = logging.getLogger('django')
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(label='用户名')
-    password = forms.CharField(label='密码', widget=forms.PasswordInput)
-    captcha = CaptchaField(label='验证码')
-
-
-class RegisterForm(forms.Form):
-    username = forms.CharField(label='用户名')
-    email = forms.EmailField(label='email')
-    password1 = forms.CharField(label='密码', widget=forms.PasswordInput)
-    password2= forms.CharField(label='Confirm', widget=forms.PasswordInput)
-    phone = forms.CharField(label='phone')
-    captcha = CaptchaField(label='验证码')
-
-class CommentForm(forms.Form):
-    """
-    评论表单
-    """
-
-    name = forms.CharField(label='称呼', max_length=16, error_messages={
-        'required': '请填写您的称呼',
-        'max_length': '称呼太长'
-    })
-
-    email = forms.EmailField(label='邮箱', error_messages={
-        'required': '请填写您的邮箱',
-        'invalid': '邮箱格式不正确'
-    })
-
-    content = forms.CharField(label='评论内容', error_messages={
-        'required': '请填写您的评论内容',
-        'max_length': '评论内容太长'
-    })
-
-# Create your views here.
 class IndexView(View):
-    # @login_required
-    def get(self,request):
-        # if request.getattr('user'):
-        # user = request.user
-        # # import pdb;pdb.set_trace()
-        # rec = Article.objects.filter(author=user)
+    def get(self, request):
         logger.info('index view')
         jsr = {} # {'items': rec}
         return render(request, 'blog/index.html', jsr)
+
 
 class UserRegister(View):
     def get(self,requset):
@@ -83,7 +43,7 @@ class UserRegister(View):
 
             if not rf.is_valid():
                 errors = 'register not valid'
-                return render_to_response("blog/success.html", RequestContext(request, {'curtime':curtime, 'errors':errors}))
+                return render_to_response("blog/success.html", RequestContext(request, {'curtime': curtime, 'errors': errors}))
 
             filterResult = User.objects.filter(username=username)
             if len(filterResult)>0:
@@ -161,9 +121,11 @@ class AboutMe(View):
 
         return render(request, 'blog/aboutme.html')
 
+
 @login_required
 def about_me(request):
     return render(request, 'blog/aboutme.html')
+
 
 @login_required
 def showPageList(request):
@@ -176,24 +138,25 @@ def showPageList(request):
 
 
 class AddEssay(View):
-    def get(self,request):
+    def get(self, request):
 
         return render(request, 'blog/add.html')
 
-    def post(self,request):
+    def post(self, request):
 
         jstr={'result' : 'ok'}
         return HttpResponse(jstr)
+
 
 def showUser(username):
     return HttpResponse('hello, %s' % username)
 
 
 class AddComment(View):
-    def get(self,request):
+    def get(self, request):
         pass
 
-    def post(self,request):
+    def post(self, request):
         pass
 
 
