@@ -1,0 +1,281 @@
+DEBUG 2017-04-13 01:23:00,310 /Library/Python/2.7/site-packages/django/db/backends/utils.py utils.py utils execute 89: (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2017-04-13 01:23:00,313 /Library/Python/2.7/site-packages/django/db/backends/utils.py utils.py utils execute 89: (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2017-04-13 01:23:12,826 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:12,828 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'blog.urls' from '/Users/alex/alexSite/blog/urls.pyc'> (None:blog) ^blog/>"
+DEBUG 2017-04-13 01:23:12,828 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:12,908 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:12,908 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'blog.urls' from '/Users/alex/alexSite/blog/urls.pyc'> (None:blog) ^blog/>"
+DEBUG 2017-04-13 01:23:12,909 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:12,975 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:12,975 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'blog.urls' from '/Users/alex/alexSite/blog/urls.pyc'> (None:blog) ^blog/>"
+DEBUG 2017-04-13 01:23:12,975 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+INFO 2017-04-13 01:23:20,663 /Users/alex/alexSite/blog/views.py views.py views get 66: index view
+DEBUG 2017-04-13 01:23:20,744 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,749 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,749 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,753 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,754 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,757 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,759 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,761 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,767 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,768 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,771 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,775 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,776 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,780 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,783 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,784 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,788 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,791 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,792 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,795 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,797 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,801 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,803 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,806 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,810 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,809 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,817 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,818 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,823 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,824 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,833 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,835 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,839 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,841 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,843 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,844 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,847 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,850 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,853 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,856 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,857 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,860 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,864 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,864 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u'<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+DEBUG 2017-04-13 01:23:20,869 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
+DEBUG 2017-04-13 01:23:20,870 /Library/Python/2.7/site-packages/django/template/base.py base.py base _resolve_lookup 927: Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+VariableDoesNotExist: Failed lookup for key [name] in u"<RegexURLResolver <module 'captcha.urls' from '/Library/Python/2.7/site-packages/captcha/urls.pyc'> (None:None) ^captcha/>"
