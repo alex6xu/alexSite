@@ -1,6 +1,6 @@
-# python2.6
+# python3.7
 django
 django-simple-captcha
 beautifulsoup4
 lxml
-Pillow=2.3
+Pillow==2.3
