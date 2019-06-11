@@ -54,7 +54,7 @@ class DoubanClient(object):
             self.cookie = cookielib.MozillaCookieJar()
             self.cookie.load(cookies_file)
             logging.info( "loading cookies for file...")
-        except Exception, e:
+        except Exception as e:
 
             logging.info( "The cookies file is not exist.")
             self.login_douban()
@@ -94,7 +94,7 @@ class DoubanClient(object):
         imgurl = re.compile(regex).findall(html)
         if imgurl:
             # urllib.urlretrieve(imgurl[0], 'captcha.jpg')
-            print "The captcha_image url address is %s" % imgurl[0]
+            print("The captcha_image url address is %s" % imgurl[0])
             logging.info("The captcha_image url address is %s" % imgurl[0])
             # download the captcha_image file.
             # data = opener.open(imgurl[0]).read()
@@ -105,7 +105,7 @@ class DoubanClient(object):
             captcha = re.search(
                 '<input type="hidden" name="captcha-id" value="(.+?)"/>', html)
             if captcha:
-                vcode = raw_input('图片上的验证码是：')
+                vcode = input('图片上的验证码是：')
                 self.data["captcha-solution"] = vcode
                 self.data["captcha-id"] = captcha.group(1)
                 self.data["user_login"] = "登录"
@@ -214,8 +214,8 @@ class DoubanClient(object):
     def get_group_list(self, group_url):
         try:
             html = self.opener.open(group_url).read()
-        except Exception, e:
-            logging.warn('open group list [%s] failed' % group_url)
+        except Exception as e:
+            logging.exception('open group list [%s] failed' % group_url)
             return None
 
         # print html
@@ -238,8 +238,8 @@ class DoubanClient(object):
             for img_num in img_numlist:
                 try:
                     download_img = urllib.urlretrieve(url, 'download/%s.jpg' % img_num)
-                except IOError, e:
-                    logging.warn(e)
+                except IOError as e:
+                    logging.exception(e)
 
                 # time.sleep(0.5)
                 # i += 1
