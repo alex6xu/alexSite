@@ -5,4 +5,4 @@ beautifulsoup4
 lxml
 Pillow==2.3
 fake_useragent
-pyspider
+#pyspider
