@@ -52,7 +52,7 @@ class Article(models.Model):
         ('p', '页面'),
     )
     title = models.CharField('标题', max_length=200, unique=True)
-    body = MDTextField('正文')
+    body = models.TextField('正文')
     pub_time = models.DateTimeField('发布时间', blank=True, null=True)
     status = models.CharField('文章状态', max_length=1, choices=STATUS_CHOICES, default='p')
     comment_status = models.CharField('评论状态', max_length=1, choices=COMMENT_STATUS, default='o')

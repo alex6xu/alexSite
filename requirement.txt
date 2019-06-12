@@ -3,6 +3,9 @@ django
 django-simple-captcha
 beautifulsoup4
 lxml
-Pillow==2.3
+Pillow==6.0.0
 fake_useragent
 #pyspider
+mistune
+pygments
+requests
