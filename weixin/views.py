@@ -25,13 +25,13 @@ class Info(View):
         token = settings.WX_TOKEN
         sign = request.GET.get('signature', '')
         timestamp = request.GET.get('timestamp', '')
-        nonce = request.GEt.get('nonce', '')
+        nonce = request.GET.get('nonce', '')
         echostr = request.GET.get('echostr', '')
         str1 = ''.join(sorted([timestamp, nonce, token])).encode('utf-8')
         signature = hashlib.sha1(str1).hexdigest()
         print(signature)
         if signature == sign:
-            return echostr
+            return HttpResponse(echostr)
         return HttpResponse('ok')
 
     def post(self, request):
