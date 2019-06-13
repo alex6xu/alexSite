@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^weixin/', include('weixin.urls', namespace='weixin')),
     url(r'^$', IndexView.as_view()),
 ]

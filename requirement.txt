@@ -9,3 +9,5 @@ fake_useragent
 mistune
 pygments
 requests
+django-mdeditor
+django-dotenv

@@ -34,6 +34,10 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'blog',
     'captcha',
+    'weixin',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'mdeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -176,3 +180,8 @@ LOGGING = {
         },
     }
 }
+
+#weixin
+WX_APPID = 'wxd1d8bc45f048100c'
+WX_APPKEY = ''
+WX_TOKEN = "wxtoken"
