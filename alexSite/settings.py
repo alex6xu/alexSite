@@ -168,7 +168,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'django': {
+        'app': {
             'handlers' :['file_handler', 'console'],
             'level':'DEBUG',
             'propagate': True  # 是否继承父类的log信息

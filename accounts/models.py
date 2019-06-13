@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.urls import reverse
-from alexSite.utils import get_current_site
+from blog.tools import get_current_site
 from django.utils.timezone import now
 
 

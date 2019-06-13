@@ -10,7 +10,9 @@ from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
+import logging
 
+logger = logging.getLogger('app')
 appid = settings.WX_APPID
 appkey = settings.WX_APPKEY
 
@@ -29,19 +31,19 @@ class Info(View):
         echostr = request.GET.get('echostr', '')
         str1 = ''.join(sorted([timestamp, nonce, token])).encode('utf-8')
         signature = hashlib.sha1(str1).hexdigest()
-        print(signature)
+        logger.info(signature)
         if signature == sign:
             return HttpResponse(echostr)
         return HttpResponse('ok')
 
     def post(self, request):
-        print(request.body)
+        logger.info(request.body)
         info = ElementTree.fromstring(request.body)
         toUser = info.find('ToUserName').text
-        print(toUser)
-        print(info.find("MsgType").text)
-        print(info.find('Latitude').text if info.find('Latitude') else '')
-        print(info.find('Longitude').text if info.find('Longitude') else '')
+        logger.info(toUser)
+        logger.info(info.find("MsgType").text)
+        logger.info(info.find('Latitude').text if info.find('Latitude') else '')
+        logger.info(info.find('Longitude').text if info.find('Longitude') else '')
         return HttpResponse("thanks for !")
 
 
@@ -52,16 +54,16 @@ class Notify(View):
     def post(self, request):
         auth_client = WxAuthToken(appid, appkey)
         acode = request.args.get('code')
-        print('acode', acode)
+        logger.info('acode', acode)
         token, openid = auth_client.get_access_token(acode)
-        print('token', token)
-        print('openid', openid)
+        logger.info('token', token)
+        logger.info('openid', openid)
         if token:
             user = WXUser(openid=openid, access_token=token)
             login(request, user)
             if request.args.get('state') == "8":
                 userinfo = auth_client.get_userinfo()
-                # print(userinfo)
+                # logger.info(userinfo)
                 ctx = {'username': userinfo.get('openid')}
             else:
                 ctx = {'username': 'test'}
