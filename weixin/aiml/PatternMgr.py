@@ -26,7 +26,7 @@ class PatternMgr(object):
         punctuation = re.escape(u"\"`~!@#$%^&*()-_=+[{]}\|;:',<.>/?")
         self._puncStripRE = re.compile("u[" + punctuation + u"]")
         self._upuncStripRE = re.compile(u"[！，。？；：～……“、［］·”‘’（）——]")
-        self._whitespaceRE = re.compile("\s", re.LOCALE | re.UNICODE)
+        self._whitespaceRE = re.compile("\s", re.L | re.UNICODE)
         self._lang_support = LangSupport.UnicodeSupport()
 
     def numTemplates(self):
