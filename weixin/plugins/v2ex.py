@@ -1,8 +1,8 @@
 #coding=utf-8
 import requests
-from tornado.escape import json_decode
-from tornado.util import ObjectDict
-
+# from tornado.escape import json_decode
+from alexSite.utils import ObjectDict
+import json
 __name__ = 'v2ex'
 
 
@@ -14,7 +14,7 @@ def test(data, msg=None, bot=None):
 
 def respond(data, msg=None, bot=None):
     res = requests.get("http://www.v2ex.com/api/topics/latest.json")
-    topics = json_decode(res.text)
+    topics = json.loads(res.text)
     articles = []
     i = 0
     while i < 10:

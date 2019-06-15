@@ -1,7 +1,7 @@
 #coding=utf-8
 import requests
 from xml.etree import ElementTree
-from tornado.util import ObjectDict
+from alexSite.utils import ObjectDict
 
 __name__ = 'oschina'
 

@@ -29,11 +29,11 @@ sys.path.append('..')
 import requests
 import cookielib
 
-from tornado.options import options
+from django.conf import settings
 
 __name__ = 'simsimi'
 
-SIMSIMI_KEY = options.simsimi_key or ''
+SIMSIMI_KEY = settings.simsimi_key or ''
 
 
 class SimSimi(object):

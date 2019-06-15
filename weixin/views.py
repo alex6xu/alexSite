@@ -37,6 +37,7 @@ class Info(View):
   <MsgType><![CDATA[{msgType}]]></MsgType>
   <Content><![CDATA[{content}]]></Content>
 </xml>"""
+
     def get(self, request):
         token = settings.WX_TOKEN
         sign = request.GET.get('signature', '')
@@ -50,7 +51,7 @@ class Info(View):
             return HttpResponse(echostr)
         return HttpResponse('ok')
 
-    def post(self, request):
+    def posta(self, request):
         logger.info(request.body)
         info = ElementTree.fromstring(request.body)
         developId = info.find('ToUserName').text
@@ -70,7 +71,7 @@ class Info(View):
             return HttpResponse(resp)
         return HttpResponse("thanks for !")
 
-    def post1(self, request):
+    def post(self, request):
         token = settings.WX_TOKEN
         sign = request.GET.get('signature', '')
         timestamp = request.GET.get('timestamp', '')
@@ -79,14 +80,14 @@ class Info(View):
         try:
             check_signature(token, sign, timestamp, nonce)
         except InvalidSignatureException:
-            logging.warning("Signature check failed.")
+            logger.warning("Signature check failed.")
             return
 
         header = {"content_type": "application/xml;charset=utf-8"}
         body = self.request.body
         msg = parse_message(body)
         if not msg:
-            logging.info('Empty message, ignored')
+            logger.info('Empty message, ignored')
             return
 
         if msg.type == 'text':
@@ -95,17 +96,17 @@ class Info(View):
             bot = AI(msg)
             response = bot.respond(msg.content, msg)
             reply = create_reply(response, msg, render=True)
-            logging.info('Replied to %s with "%s"', msg.source, response)
+            logger.info('Replied to %s with "%s"', msg.source, response)
             return HttpResponse(reply, content_type=header['content_type'])
 
         elif msg.type == 'location':
             # if options.debug:
-            logging.info('message type location from %s', msg.source)
+            logger.info('message type location from %s', msg.source)
         elif msg.type == 'image':
             # if options.debug:
-            logging.info('message type image from %s', msg.source)
+            logger.info('message type image from %s', msg.source)
         else:
-            logging.info('message type unknown')
+            logger.info('message type unknown')
 
 
 class Notify(View):
@@ -136,9 +137,11 @@ class Notify(View):
 
         return render('user/index.html', **ctx)
 
+
 class Test(View):
     def get(self,request):
         pass
+
 
 class Token(View):
     def get(self, request):
