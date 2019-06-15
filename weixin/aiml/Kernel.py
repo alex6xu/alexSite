@@ -234,7 +234,7 @@ class Kernel(object):
         for s in parser.sections():
             # Add a new WordSub instance for this section.  If one already
             # exists, delete it.
-            if self._subbers.has_key(s):
+            if s in self._subbers:
                 del(self._subbers[s])
             self._subbers[s] = WordSub()
             # iterate over the key,value pairs and add them to the subber
@@ -243,7 +243,7 @@ class Kernel(object):
 
     def _addSession(self, sessionID):
         """Create a new session with the specified ID string."""
-        if self._sessions.has_key(sessionID):
+        if sessionID in self._sessions:
             return
         # Create the session.
         self._sessions[sessionID] = {
@@ -255,7 +255,7 @@ class Kernel(object):
         
     def _deleteSession(self, sessionID):
         """Delete the specified session."""
-        if self._sessions.has_key(sessionID):
+        if sessionID in self._sessions:
             self._sessions.pop(sessionID)
 
     def getSessionData(self, sessionID = None):
@@ -484,7 +484,7 @@ class Kernel(object):
         
         # Case #1: test the value of a specific predicate for a
         # specific value.
-        if attr.has_key('name') and attr.has_key('value'):
+        if 'name' in attr and 'value' in attr:
             val = self.getPredicate(attr['name'], sessionID)
             if val == attr['value']:
                 for e in elem[2:]:
@@ -495,7 +495,7 @@ class Kernel(object):
             # name and value pair for each one.
             try:
                 name = None
-                if attr.has_key('name'):
+                if 'name' in attr:
                     name = attr['name']
                 # Get the list of <li> elemnents
                 listitems = []
@@ -539,7 +539,7 @@ class Kernel(object):
                     try:
                         li = listitems[-1]
                         liAttr = li[1]
-                        if not (liAttr.has_key('name') or liAttr.has_key('value')):
+                        if not ('name' in liAttr or 'value' in liAttr):
                             response += self._processElement(li, sessionID)
                     except:
                         # listitems was empty, no attributes, missing
