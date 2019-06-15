@@ -12,7 +12,7 @@ __name__ = 'talkbot'
 class TalkBot(aiml.Kernel):
     def __init__(self):
         super(TalkBot, self).__init__()
-        self.verbose(settings.debug)
+        self.verbose(settings.DEBUG)
         if os.path.exists(settings.talkbot_brain_path):
             self.bootstrap(brainFile=settings.talkbot_brain_path)
         else:
