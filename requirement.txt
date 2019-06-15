@@ -11,3 +11,4 @@ pygments
 requests
 django-mdeditor
 django-dotenv
+wechatpy>=0.1.1

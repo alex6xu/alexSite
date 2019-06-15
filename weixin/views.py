@@ -11,6 +11,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 import logging
+from .AI import AI
+from wechatpy import parse_message, create_reply
+from wechatpy.utils import check_signature
+from wechatpy.exceptions import InvalidSignatureException
+
 
 logger = logging.getLogger('app')
 appid = settings.WX_APPID
@@ -45,6 +50,44 @@ class Info(View):
         logger.info(info.find('Latitude').text if info.find('Latitude') else '')
         logger.info(info.find('Longitude').text if info.find('Longitude') else '')
         return HttpResponse("thanks for !")
+
+    def post1(self, request):
+        token = settings.WX_TOKEN
+        sign = request.GET.get('signature', '')
+        timestamp = request.GET.get('timestamp', '')
+        nonce = request.GET.get('nonce', '')
+        echostr = request.GET.get('echostr', '')
+        try:
+            check_signature(token, sign, timestamp, nonce)
+        except InvalidSignatureException:
+            logging.warning("Signature check failed.")
+            return
+
+        # self.set_header("Content-Type", "application/xml;charset=utf-8")
+        body = self.request.body
+        msg = parse_message(body)
+        if not msg:
+            logging.info('Empty message, ignored')
+            return
+
+
+        if msg.type == 'text':
+            logger.info('message type text from %s', msg.source)
+            # new bot
+            bot = AI(msg)
+            response = bot.respond(msg.content, msg)
+            reply = create_reply(response, msg, render=True)
+            # self.write(reply)
+
+            logging.info('Replied to %s with "%s"', msg.source, response)
+        elif msg.type == 'location':
+            # if options.debug:
+            logging.info('message type location from %s', msg.source)
+        elif msg.type == 'image':
+            # if options.debug:
+            logging.info('message type image from %s', msg.source)
+        else:
+            logging.info('message type unknown')
 
 
 class Notify(View):
