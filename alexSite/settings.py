@@ -185,3 +185,15 @@ LOGGING = {
 WX_APPID = 'wxd1d8bc45f048100c'
 WX_APPKEY = ''
 WX_TOKEN = "wxtoken"
+
+username = "Alex"
+simsimi_key = ''
+talkbot_brain_path = ''
+aiml_set = os.path.join(BASE_DIR, 'weixin/aiml_set')
+talkbot_properties = {'name': username,
+        "master": username,
+        'birthday': '',
+        'gender': '直男',
+        'city': '安徽',
+        'os': 'OS X'}
+feed_url = ''

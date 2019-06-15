@@ -2,6 +2,7 @@
 
 import logging
 from . import plugins
+from .plugins import *
 
 
 class AI(object):
@@ -19,7 +20,7 @@ class AI(object):
             return
         for name in plugins.__all__:
             try:
-                __import__('plugins.%s' % name)
+                # __import__('plugins.%s' % name)
                 cls.add_plugin(getattr(plugins, name))
                 logging.info('Plugin %s loaded success.' % name)
             except:
@@ -50,7 +51,7 @@ class AI(object):
                 logging.info('Plugin %s respond successfully', plugin.__name__)
                 return response
 
-        return response or u'呵呵'
+        return response or '您好'
 
 
 AI.load_plugins()

@@ -1,13 +1,13 @@
 #coding=utf-8
 import feedparser
 from alexSite.utils import ObjectDict
-# from tornado.options import options
+from django.conf import settings
 
 __name__ = 'feed'
 
 
 def test(data, msg=None, bot=None):
-    if not options.feed_url:
+    if not settings.feed_url:
         return False
     if 'rss feed' in data or '博客更新' in data:
         return True
@@ -15,7 +15,7 @@ def test(data, msg=None, bot=None):
 
 
 def respond(data, msg=None, bot=None):
-    parser = feedparser.parse(options.feed_url)
+    parser = feedparser.parse(settings.feed_url)
     articles = []
     i = 0
     for entry in parser.entries:
