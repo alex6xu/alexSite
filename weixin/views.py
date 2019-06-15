@@ -16,8 +16,10 @@ from wechatpy import parse_message, create_reply
 from wechatpy.utils import check_signature
 from wechatpy.exceptions import InvalidSignatureException
 
+from datetime import datetime
 
 logger = logging.getLogger('app')
+
 appid = settings.WX_APPID
 appkey = settings.WX_APPKEY
 
@@ -28,6 +30,13 @@ class Index(View):
 
 
 class Info(View):
+    respTemp = """<xml>
+  <ToUserName><![CDATA[{toUser}]]></ToUserName>
+  <FromUserName><![CDATA[{fromUser}]]></FromUserName>
+  <CreateTime>{create_time}</CreateTime>
+  <MsgType><![CDATA[{msgType}]]></MsgType>
+  <Content><![CDATA[{content}]]></Content>
+</xml>"""
     def get(self, request):
         token = settings.WX_TOKEN
         sign = request.GET.get('signature', '')
@@ -44,11 +53,21 @@ class Info(View):
     def post(self, request):
         logger.info(request.body)
         info = ElementTree.fromstring(request.body)
-        toUser = info.find('ToUserName').text
-        logger.info(toUser)
+        developId = info.find('ToUserName').text
+        userId = info.find('FromUserName').text
+        createTime = datetime.now().timestamp()
+        logger.info(userId)
         logger.info(info.find("MsgType").text)
         logger.info(info.find('Latitude').text if info.find('Latitude') else '')
         logger.info(info.find('Longitude').text if info.find('Longitude') else '')
+        resp = self.respTemp.format(toUser=userId,
+                                    fromUser=developId,
+                                    create_time=createTime,
+                                    msgType="text",
+                                    content="您好，欢迎关注"
+                                    )
+        if resp:
+            return HttpResponse(resp)
         return HttpResponse("thanks for !")
 
     def post1(self, request):
@@ -56,20 +75,19 @@ class Info(View):
         sign = request.GET.get('signature', '')
         timestamp = request.GET.get('timestamp', '')
         nonce = request.GET.get('nonce', '')
-        echostr = request.GET.get('echostr', '')
+        # echostr = request.GET.get('echostr', '')
         try:
             check_signature(token, sign, timestamp, nonce)
         except InvalidSignatureException:
             logging.warning("Signature check failed.")
             return
 
-        # self.set_header("Content-Type", "application/xml;charset=utf-8")
+        header = {"content_type": "application/xml;charset=utf-8"}
         body = self.request.body
         msg = parse_message(body)
         if not msg:
             logging.info('Empty message, ignored')
             return
-
 
         if msg.type == 'text':
             logger.info('message type text from %s', msg.source)
@@ -77,9 +95,9 @@ class Info(View):
             bot = AI(msg)
             response = bot.respond(msg.content, msg)
             reply = create_reply(response, msg, render=True)
-            # self.write(reply)
-
             logging.info('Replied to %s with "%s"', msg.source, response)
+            return HttpResponse(reply, content_type=header['content_type'])
+
         elif msg.type == 'location':
             # if options.debug:
             logging.info('message type location from %s', msg.source)
