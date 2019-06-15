@@ -6,7 +6,7 @@ import marshal
 import pprint
 import re
 import string
-import LangSupport
+from . import LangSupport
 import sys
 import logging
 
