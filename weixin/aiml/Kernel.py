@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """This file contains the public interface to the aiml module."""
-import AimlParser
-import DefaultSubs
-import Utils
-from PatternMgr import PatternMgr
-from WordSub import WordSub
+from . import AimlParser
+from . import DefaultSubs
+from . import Utils
+from .PatternMgr import PatternMgr
+from .WordSub import WordSub
 
 from ConfigParser import ConfigParser
 import copy
