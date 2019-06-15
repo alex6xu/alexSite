@@ -6,7 +6,7 @@ from . import Utils
 from .PatternMgr import PatternMgr
 from .WordSub import WordSub
 
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 import copy
 import glob
 import os
