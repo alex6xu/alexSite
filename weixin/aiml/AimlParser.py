@@ -202,7 +202,7 @@ class AimlHandler(ContentHandler):
 			self._pushWhitespaceBehavior(attr)
 		elif self._state == self._STATE_InsidePattern:
 			# Certain tags are allowed inside <pattern> elements.
-			if name == "bot" and attr.has_key("name") and attr["name"] == u"name":
+			if name == "bot" and 'name' in attr and attr["name"] == u"name":
 				# Insert a special character string that the PatternMgr will
 				# replace with the bot's name.
 				self._currentPattern += u" BOT_NAME "
@@ -210,13 +210,13 @@ class AimlHandler(ContentHandler):
 				raise AimlParserError(("Unexpected <%s> tag " % name)+self._location())
 		elif self._state == self._STATE_InsideThat:
 			# Certain tags are allowed inside <that> elements.
-			if name == "bot" and attr.has_key("name") and attr["name"] == u"name":
+			if name == "bot" and 'name' in attr and attr["name"] == u"name":
 				# Insert a special character string that the PatternMgr will
 				# replace with the bot's name.
 				self._currentThat += u" BOT_NAME "
 			else:
 				raise AimlParserError(("Unexpected <%s> tag " % name)+self._location())
-		elif self._state == self._STATE_InsideTemplate and self._validInfo.has_key(name):
+		elif self._state == self._STATE_InsideTemplate and name in self._validInfo:
 			# Starting a new element inside the current pattern. First
 			# we need to convert 'attr' into a native Python dictionary,
 			# so it can later be marshaled.
@@ -276,7 +276,7 @@ class AimlHandler(ContentHandler):
 				parent = self._elemStack[-1][0]
 				parentAttr = self._elemStack[-1][1]
 				required, optional, canBeParent = self._validInfo[parent]
-				nonBlockStyleCondition = (parent == "condition" and not (parentAttr.has_key("name") and parentAttr.has_key("value")))
+				nonBlockStyleCondition = (parent == "condition" and not ('name' in parentAttr and 'value' in parentAttr))
 				if not canBeParent:
 					raise AimlParserError(("Unexpected text inside <%s> element "%parent)+self._location())
 				elif parent == "random" or nonBlockStyleCondition:
@@ -492,7 +492,7 @@ class AimlHandler(ContentHandler):
 			# happen.
 			raise AimlParserError(("Element stack is empty while validating <%s> " % name)+self._location())
 		required, optional, canBeParent = self._validInfo[parent]
-		nonBlockStyleCondition = (parent == "condition" and not (parentAttr.has_key("name") and parentAttr.has_key("value")))
+		nonBlockStyleCondition = (parent == "condition" and not ( 'name' in parentAttr and 'value' in  parentAttr))
 		if not canBeParent:
 			raise AimlParserError(("<%s> elements cannot have any contents "%parent)+self._location())
 		# Special-case test if the parent element is <condition> (the
@@ -508,7 +508,7 @@ class AimlHandler(ContentHandler):
 			if not (parent=="random" or nonBlockStyleCondition):
 				raise AimlParserError(("Unexpected <li> element contained by <%s> element "%parent)+self._location())
 			if nonBlockStyleCondition:
-				if parentAttr.has_key("name"):
+				if 'name' in parentAttr:
 					# Single-predicate condition.  Each <li> element except the
 					# last must have a "value" attribute.
 					if len(attr) == 0:
@@ -518,8 +518,9 @@ class AimlHandler(ContentHandler):
 							raise AimlParserError("Unexpected default <li> element inside <condition> "+self._location())
 						else:
 							self._foundDefaultLiStack[-1] = True
-					elif len(attr) == 1 and attr.has_key("value"):
-						pass # this is the valid case
+					elif len(attr) == 1 and 'value' in attr:
+						# this is the valid case
+						pass
 					else:
 						raise AimlParserError("Invalid <li> inside single-predicate <condition> "+self._location())
 				elif len(parentAttr) == 0:
@@ -532,7 +533,7 @@ class AimlHandler(ContentHandler):
 							raise AimlParserError("Unexpected default <li> element inside <condition> "+self._location())
 						else:
 							self._foundDefaultLiStack[-1] = True
-					elif len(attr) == 2 and attr.has_key("value") and attr.has_key("name"):
+					elif len(attr) == 2 and 'value' in attr and 'name' in attr:
 						pass # this is the valid case
 					else:
 						raise AimlParserError("Invalid <li> inside multi-predicate <condition> "+self._location())

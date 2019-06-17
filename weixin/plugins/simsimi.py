@@ -33,7 +33,7 @@ from django.conf import settings
 
 __name__ = 'simsimi'
 
-SIMSIMI_KEY = settings.simsimi_key or ''
+SIMSIMI_KEY = settings.SIMSIMI_KEY or ''
 
 
 class SimSimi(object):

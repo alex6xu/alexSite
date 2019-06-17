@@ -85,7 +85,7 @@ class LoginView(View):
         password = lf.data['password']
         jstr = {}
         try:
-            import pdb;pdb.set_trace()
+            # import pdb;pdb.set_trace()
             user = auth.authenticate(username=username, password=password)
             #user = User.objects.filter(username=username)
             print('user authenticated')

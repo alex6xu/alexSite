@@ -7,7 +7,7 @@ __name__ = 'feed'
 
 
 def test(data, msg=None, bot=None):
-    if not settings.feed_url:
+    if not settings.FEED_URL:
         return False
     if 'rss feed' in data or '博客更新' in data:
         return True
@@ -15,7 +15,7 @@ def test(data, msg=None, bot=None):
 
 
 def respond(data, msg=None, bot=None):
-    parser = feedparser.parse(settings.feed_url)
+    parser = feedparser.parse(settings.FEED_URL)
     articles = []
     i = 0
     for entry in parser.entries:

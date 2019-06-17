@@ -13,19 +13,20 @@ class TalkBot(aiml.Kernel):
     def __init__(self):
         super(TalkBot, self).__init__()
         self.verbose(settings.DEBUG)
-        if os.path.exists(settings.talkbot_brain_path):
-            self.bootstrap(brainFile=settings.talkbot_brain_path)
+        # import pdb;pdb.set_trace()
+        if os.path.exists(settings.TALKBOT_BRAIN_PATH):
+            self.bootstrap(brainFile=settings.TALKBOT_BRAIN_PATH)
         else:
             self.init_bot()
-            self.saveBrain(settings.talkbot_brain_path)
+            self.saveBrain(settings.TALKBOT_BRAIN_PATH)
 
-        for p in settings.talkbot_properties:
-            self.setBotPredicate(p, settings.talkbot_properties[p])
+        for p in settings.TALKBOT_PROPERTIES:
+            self.setBotPredicate(p, settings.TALKBOT_PROPERTIES[p])
 
     def init_bot(self):
-        for f in os.listdir(settings.aiml_set):
+        for f in os.listdir(settings.AIML_SET):
             if f.endswith('.aiml'):
-                self.learn(os.path.join(settings.aiml_set, f))
+                self.learn(os.path.join(settings.AIML_SET, f))
 
 talkbot = TalkBot()
 

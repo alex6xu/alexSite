@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 import logging
-from .AI import AI
+# from .AI import AI
 from wechatpy import parse_message, create_reply
 from wechatpy.utils import check_signature
 from wechatpy.exceptions import InvalidSignatureException
@@ -93,8 +93,9 @@ class Info(View):
         if msg.type == 'text':
             logger.info('message type text from %s', msg.source)
             # new bot
-            bot = AI(msg)
-            response = bot.respond(msg.content, msg)
+            # bot = AI(msg)
+            # response = bot.respond(msg.content, msg)
+            response = '您好！'
             reply = create_reply(response, msg, render=True)
             logger.info('Replied to %s with "%s"', msg.source, response)
             return HttpResponse(reply, content_type=header['content_type'])

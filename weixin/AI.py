@@ -20,7 +20,7 @@ class AI(object):
             return
         for name in plugins.__all__:
             try:
-                # __import__('plugins.%s' % name)
+                __import__('.plugins.%s' % name)
                 cls.add_plugin(getattr(plugins, name))
                 logging.info('Plugin %s loaded success.' % name)
             except:
