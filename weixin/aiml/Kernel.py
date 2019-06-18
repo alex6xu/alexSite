@@ -46,7 +46,7 @@ class Kernel(object):
         self.setBotPredicate("name", "Nameless")
 
         # set up the word substitutors (subbers):
-        self._subbers = {}
+        self._subbers = dict()
         self._subbers['gender'] = WordSub(DefaultSubs.defaultGender)
         self._subbers['person'] = WordSub(DefaultSubs.defaultPerson)
         self._subbers['person2'] = WordSub(DefaultSubs.defaultPerson2)
@@ -229,7 +229,7 @@ class Kernel(object):
         """
         inFile = open(filename)
         parser = ConfigParser()
-        parser.readfp(inFile, filename)
+        parser.read_file(inFile, filename)
         inFile.close()
         for s in parser.sections():
             # Add a new WordSub instance for this section.  If one already
@@ -289,14 +289,15 @@ class Kernel(object):
             parser = AimlParser.create_parser()
             handler = parser.getContentHandler()
             handler.setEncoding(self._textEncoding)
-            try: parser.parse(f)
+            try:
+                parser.parse(f)
             except xml.sax.SAXParseException as msg:
                 err = "\nFATAL PARSE ERROR in file %s:\n%s\n" % (f,msg)
                 sys.stderr.write(err)
                 continue
             # store the pattern/template pairs in the PatternMgr.
             for key,tem in handler.categories.items():
-                self._brain.add(key,tem)
+                self._brain.add(key[0], key[1], key[2],tem)
             # Parsing was successful.
             if self._verboseMode:
                 logging.info("done (%.2f seconds)" % (time.clock() - start))

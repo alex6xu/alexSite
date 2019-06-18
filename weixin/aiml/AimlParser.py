@@ -223,10 +223,10 @@ class AimlHandler(ContentHandler):
 			attrDict = {}
 			for k,v in attr.items():
 				#attrDict[k[1].encode(self._encoding)] = v.encode(self._encoding)
-				attrDict[k.encode(self._encoding)] = v
+				attrDict[k] = v
 			self._validateElemStart(name, attrDict, self._version)
 			# Push the current element onto the element stack.
-			self._elemStack.append([name.encode(self._encoding),attrDict])
+			self._elemStack.append([name, attrDict])
 			self._pushWhitespaceBehavior(attr)
 			# If this is a condition element, push a new entry onto the
 			# foundDefaultLiStack

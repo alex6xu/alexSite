@@ -23,7 +23,8 @@ class AI(object):
                 __import__('.plugins.%s' % name)
                 cls.add_plugin(getattr(plugins, name))
                 logging.info('Plugin %s loaded success.' % name)
-            except:
+            except Exception as e:
+                logging.exception(e)
                 logging.warning('Fail to load plugin %s' % name)
         cls._plugin_loaded = True
 

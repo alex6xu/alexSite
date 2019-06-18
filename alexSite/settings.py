@@ -188,12 +188,14 @@ WX_TOKEN = "wxtoken"
 
 USER_NAME = "Alex"
 SIMSIMI_KEY = ''
-TALKBOT_BRAIN_PATH = ''
-AIML_SET = os.path.join(BASE_DIR, 'weixin/AIML_SET')
-TALKBOT_PROPERTIESTALKBOT_ = {'name': USER_NAME,
+
+TALKBOT_BRAIN_PATH = os.path.join(BASE_DIR, 'weixin/brain.txt')
+AIML_SET = os.path.join(BASE_DIR, 'weixin/aiml_set')
+TALKBOT_PROPERTIES= {'name': USER_NAME,
         "master": USER_NAME,
         'birthday': '',
         'gender': '直男',
-        'city': '安徽',
+        'city': '上海',
         'os': 'OS X'}
+
 FEED_URL = ''
