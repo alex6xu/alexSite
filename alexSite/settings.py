@@ -183,11 +183,11 @@ LOGGING = {
 
 #weixin
 WX_APPID = 'wxd1d8bc45f048100c'
-WX_APPKEY = ''
+WX_APPKEY =  os.getenv("wx_appkey")
 WX_TOKEN = "wxtoken"
 
 USER_NAME = "Alex"
-SIMSIMI_KEY = ''
+SIMSIMI_KEY =  os.getenv("SIMSIMS_KEY")
 
 TALKBOT_BRAIN_PATH = os.path.join(BASE_DIR, 'weixin/brain.txt')
 AIML_SET = os.path.join(BASE_DIR, 'weixin/aiml_set')

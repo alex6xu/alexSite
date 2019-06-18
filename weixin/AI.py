@@ -2,7 +2,6 @@
 
 import logging
 from . import plugins
-from .plugins import *
 
 
 class AI(object):
@@ -20,8 +19,8 @@ class AI(object):
             return
         for name in plugins.__all__:
             try:
-                __import__('.plugins.%s' % name)
-                cls.add_plugin(getattr(plugins, name))
+                plugin = __import__('weixin.plugins.%s' % name, fromlist=(name,))
+                cls.add_plugin(plugin)
                 logging.info('Plugin %s loaded success.' % name)
             except Exception as e:
                 logging.exception(e)
