@@ -10,5 +10,5 @@ urlpatterns = [
     path('call', csrf_exempt(Info.as_view()), name='info'),
     # path('articles/<slug:title>/', views.article, name='article-detail'),
     # path('articles/<slug:title>/<int:section>/', views.section, name='article-section'),
-    path('test', Test, name='test'),
+    path('test', Test.as_view(), name='test'),
 ]

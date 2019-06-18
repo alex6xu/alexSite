@@ -308,7 +308,8 @@ class Kernel(object):
             return ""
 
         #ensure that input is a unicode string
-        try: input = input.decode(self._textEncoding, 'replace')
+        try:
+            input = input.decode(self._textEncoding, 'replace')
         except UnicodeError: pass
         except AttributeError: pass
         

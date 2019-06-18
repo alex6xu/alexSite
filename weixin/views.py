@@ -7,8 +7,7 @@ from .wxauth import WXToken, WxAuthToken
 from .models import WXUser
 from django.conf import settings
 from django.contrib.auth import login
-from django.views.decorators.csrf import csrf_exempt
-from django.http.request import HttpRequest
+# from django.views.decorators.csrf import csrf_exempt
 from django.http.response import HttpResponse
 import logging
 from .AI import AI
@@ -141,7 +140,10 @@ class Notify(View):
 
 class Test(View):
     def get(self,request):
-        pass
+        msg = request.args.get('msg')
+        bot = AI()
+        response = bot.respond(msg, msg)
+        return HttpResponse(response)
 
 
 class Token(View):
