@@ -84,6 +84,7 @@ class Info(View):
 
         header = {"content_type": "application/xml;charset=utf-8"}
         body = self.request.body
+        logger.info(body)
         msg = parse_message(body)
         if not msg:
             logger.info('Empty message, ignored')
@@ -102,9 +103,12 @@ class Info(View):
         elif msg.type == 'location':
             # if options.debug:
             logger.info('message type location from %s', msg.source)
+
         elif msg.type == 'image':
             # if options.debug:
             logger.info('message type image from %s', msg.source)
+            image = msg.image
+
         else:
             logger.info('message type unknown')
 
