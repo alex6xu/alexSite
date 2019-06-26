@@ -14,7 +14,8 @@ from .AI import AI
 from wechatpy import parse_message, create_reply
 from wechatpy.utils import check_signature
 from wechatpy.exceptions import InvalidSignatureException
-
+from wechatpy.replies import ImageReply
+from .utils import image_process, weChatClient
 from datetime import datetime
 
 logger = logging.getLogger('app')
@@ -107,7 +108,11 @@ class Info(View):
         elif msg.type == 'image':
             # if options.debug:
             logger.info('message type image from %s', msg.source)
-            image = msg.image
+            logger.info(msg.image)
+            myimage = image_process(msg.image)
+            myimage_id = weChatClient.api.WeChatMaterial.add('image', myimage)
+            replay = ImageReply(type='image',media_id =myimage_id)
+            return HttpResponse(replay.render(), content_type=header['content_type'])
 
         else:
             logger.info('message type unknown')
