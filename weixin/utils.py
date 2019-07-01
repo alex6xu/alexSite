@@ -26,8 +26,14 @@ class MyImage:
 
 
 def trans_image(f):
-    pics = gio.mimread(f)
+    try:
+        pics = gio.mimread(f)
+    except TypeError as e:
+        return '图片格式错误'
+    except Exception as e:
+        return None
     A = []
+    output = StringIO()
     for i in pics:
         u, v, _ = i.shape
         c = i * 0 + 255
@@ -41,13 +47,14 @@ def trans_image(f):
                             cv2.FONT_HERSHEY_COMPLEX, 0.3,
                             (int(b), int(g), int(r)), 1)
         A.append(c)
-        output = StringIO()
-        return gio.mimsave(output, A, 'gif', duration=0.1)
+
+        gio.mimsave(output, A, 'gif', duration=0.1)
+    return output
 
 weChatClient = WeChatClient(settings.WX_APPID, settings.WX_APPKEY)
 
 
 def image_process(img):
     resp = requests.get(img)
-    myimg = MyImage(resp.content)
-    return trans_image(myimg)
+    # myimg = MyImage()
+    return trans_image(resp.content)

@@ -110,9 +110,14 @@ class Info(View):
             logger.info('message type image from %s', msg.source)
             logger.info(msg.image)
             myimage = image_process(msg.image)
-            myimage_id = weChatClient.api.WeChatMaterial.add('image', myimage)
-            replay = ImageReply(type='image',media_id =myimage_id)
-            return HttpResponse(replay.render(), content_type=header['content_type'])
+            if not myimage:
+                replay = create_reply('失败', msg, render=True)
+            elif myimage == "":
+                replay = create_reply(myimage, msg, render=True)
+            else:
+                myimage_id = weChatClient.api.WeChatMaterial.add('image', myimage)
+                replay = ImageReply(type='image',media_id =myimage_id).render()
+            return HttpResponse(replay, content_type=header['content_type'])
 
         else:
             logger.info('message type unknown')
