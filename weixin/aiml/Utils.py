@@ -20,7 +20,7 @@ def sentences(s):
         except: q = l+1
         try: e = s.index('!', pos)
         except: e = l+1
-        end = min(p,q,e)
+        end = min(p, q, e)
         sentenceList.append( s[pos:end].strip() )
         pos = end+1
     # If no sentences were found, return a one-item list containing

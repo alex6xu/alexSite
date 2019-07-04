@@ -13,7 +13,6 @@ class TalkBot(aiml.Kernel):
     def __init__(self):
         super(TalkBot, self).__init__()
         self.verbose(settings.DEBUG)
-        # import pdb;pdb.set_trace()
         if os.path.exists(settings.TALKBOT_BRAIN_PATH):
             self.bootstrap(brainFile=settings.TALKBOT_BRAIN_PATH)
         else:
@@ -28,13 +27,17 @@ class TalkBot(aiml.Kernel):
             if f.endswith('.aiml'):
                 self.learn(os.path.join(settings.AIML_SET, f))
 
+
 talkbot = TalkBot()
+
 
 def test(data, msg=None, bot=None):
     return True
 
-def respond(data, msg=None, bot=None):
-    return talkbot.respond(data).encode('utf-8')
+
+def respond(data, session=None):
+    return talkbot.respond(data, session).encode('utf-8')
+
 
 if __name__ == '__main__':
     print(respond("你好"))
