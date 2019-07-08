@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
   <category>
-    <pattern>*</pattern>
-    <template></template>
-  </category>
-
-  <category>
     <pattern>你 好</pattern>
     <template> 
       <random>
@@ -19,18 +14,18 @@
     </template>
   </category>
 
-  <category><pattern>HI</pattern><template><srai>你好</srai> </template>  </category>
-  <category><pattern>HI *</pattern> <template><srai>你好</srai> </template>   </category>
-  <category><pattern>HELLO</pattern> <template><srai>你好</srai> </template>  </category>
-  <category><pattern>HELLO *</pattern> <template><srai>你好</srai> </template>  </category>
+  <category><pattern>HI</pattern><template><srai>你 好</srai> </template>  </category>
+  <category><pattern>HI *</pattern> <template><srai>你 好</srai> </template>   </category>
+  <category><pattern>HELLO</pattern> <template><srai>你 好</srai> </template>  </category>
+  <category><pattern>HELLO *</pattern> <template><srai>你 好</srai> </template>  </category>
 
   <category>
     <pattern>你 好 *</pattern>
     <template>
       <think><set name="star"><star index="1"/></set></think>
       <condition name="star">
-        <li value="啊"><srai>你好</srai></li>
-        <li value="呀"><srai>你好</srai></li>
+        <li value="啊"><srai>你 好</srai></li>
+        <li value="呀"><srai>你 好</srai></li>
         <li value="萌"><srai>调戏</srai></li>
         <li value="萌啊"><srai>调戏</srai></li>
         <li value="聪明"><srai>夸奖<get name="star" /></srai></li>

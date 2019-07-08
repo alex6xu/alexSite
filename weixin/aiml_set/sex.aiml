@@ -2,17 +2,17 @@
 <aiml>
   <category>
     <pattern>亲 一 个</pattern>
-    <template><srai>亲亲</srai></template>
+    <template><srai>亲 亲</srai></template>
   </category>
   
   <category>
     <pattern>啵 一 个</pattern>
-    <template><srai>亲亲</srai></template>
+    <template><srai>亲 亲</srai></template>
   </category>
 
   <category>
     <pattern>亲 一 下</pattern>
-    <template><srai>亲亲</srai></template>
+    <template><srai>亲 亲</srai></template>
   </category>
 
   <category>

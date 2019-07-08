@@ -19,6 +19,8 @@ import threading
 import logging
 import xml.sax
 
+logger = logging.getLogger('app')
+
 
 class Kernel(object):
     # module constants
@@ -120,7 +122,7 @@ class Kernel(object):
             print(self._respond(cmd, self._globalSessionID))
             
         if self._verboseMode:
-            logging.info("Kernel bootstrap completed in %.2f seconds" % (time.perf_counter() - start))
+            logger.info("Kernel bootstrap completed in %.2f seconds" % (time.perf_counter() - start))
 
     def verbose(self, isVerbose = True):
         """Enable/disable verbose output mode."""
@@ -154,21 +156,21 @@ class Kernel(object):
 
         """
         if self._verboseMode:
-            logging.info("Loading brain from %s..." % filename)
+            logger.info("Loading brain from %s..." % filename)
         start = time.perf_counter()
         self._brain.restore(filename)
         if self._verboseMode:
             end = time.perf_counter() - start
-            logging.info("done (%d categories in %.2f seconds)" % (self._brain.numTemplates(), end))
+            logger.info("done (%d categories in %.2f seconds)" % (self._brain.numTemplates(), end))
 
     def saveBrain(self, filename):
         """Dump the contents of the bot's brain to a file on disk."""
         if self._verboseMode:
-            logging.info("Saving brain to %s..." % filename)
+            logger.info("Saving brain to %s..." % filename)
         start = time.perf_counter()
         self._brain.save(filename)
         if self._verboseMode:
-            logging.info("done (%.2f seconds)" % (time.perf_counter() - start))
+            logger.info("done (%.2f seconds)" % (time.perf_counter() - start))
 
     def getPredicate(self, name, sessionID = _globalSessionID):
         """Retrieve the current value of the predicate 'name' from the
@@ -283,7 +285,7 @@ class Kernel(object):
         """
         for f in glob.glob(filename):
             if self._verboseMode:
-                logging.info("Loading %s..." % f)
+                logger.info("Loading %s..." % f)
             start = time.perf_counter()
             # Load and parse the AIML file.
             parser = AimlParser.create_parser()
@@ -300,7 +302,7 @@ class Kernel(object):
                 self._brain.add(key[0], key[1], key[2],tem)
             # Parsing was successful.
             if self._verboseMode:
-                logging.info("done (%.2f seconds)" % (time.perf_counter() - start))
+                logger.info("done (%.2f seconds)" % (time.perf_counter() - start))
 
     def respond(self, input, sessionID = _globalSessionID):
         """Return the Kernel's response to the input string."""
@@ -532,8 +534,8 @@ class Kernel(object):
                         # No attributes, no name/value attributes, no
                         # such predicate/session, or processing error.
                         if self._verboseMode:
-                            logging.info("Something amiss -- skipping listitem")
-                            logging.info(li)
+                            logger.info("Something amiss -- skipping listitem")
+                            logger.info(li)
                         raise
                 if not foundMatch:
                     # Check the last element of listitems.  If it has
@@ -547,12 +549,12 @@ class Kernel(object):
                         # listitems was empty, no attributes, missing
                         # name/value attributes, or processing error.
                         if self._verboseMode:
-                            logging.info("error in default listitem")
+                            logger.info("error in default listitem")
                         raise
             except:
                 # Some other catastrophic cataclysm
                 if self._verboseMode:
-                    logging.info("catastrophic condition failure")
+                    logger.info("catastrophic condition failure")
                 raise
         return response
         

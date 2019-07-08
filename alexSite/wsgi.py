@@ -12,5 +12,5 @@ import dotenv
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "alexSite.settings")
-dotenv.read_dotenv('.env')
+dotenv.find_dotenv('.env')
 application = get_wsgi_application()

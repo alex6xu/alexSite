@@ -5,9 +5,10 @@
   <category><pattern>喵 *</pattern><template><srai>调戏</srai> </template></category>
   <category><pattern>喵</pattern><template><srai>调戏</srai> </template></category>
   <category><pattern>笑 一 个</pattern><template><srai>调戏</srai> </template></category>
-  
+  <category><pattern>调 戏</pattern><template><srai>调戏</srai> </template></category>
+
   <category>
-    <pattern>调 戏</pattern>
+    <pattern>调戏</pattern>
     <template>
       <random>
         <li>卖萌禁止!</li>
@@ -20,11 +21,13 @@
     </template>
   </category>
   
+  <category><pattern>调 教</pattern><template><srai>调教</srai> </template></category>
   <category><pattern>调 教 *</pattern><template><srai>调教</srai> </template></category>
   <category><pattern>* 调 教 *</pattern><template><srai>调教</srai> </template></category>
-  
+  <category><pattern>夸 奖 *</pattern><template><srai>夸奖*</srai> </template></category>
+
   <category>
-    <pattern>调 教</pattern>
+    <pattern>调教</pattern>
     <template>
       <random>
         <li>求调教！</li>
@@ -37,19 +40,21 @@
   </category>
 
   <category>
-    <pattern>夸 奖 *</pattern>
+    <pattern>夸奖*</pattern>
     <template>
      嗨嗨，他们都说我<get name="star"/>~ ʅ(‾◡◝)ʃ  (骄
     </template>
   </category>
 
+  <category><pattern>* 好 不 好</pattern> <template> <srai><star/>好不好</srai></template> </category>
   <category><pattern>* 好 不 好 _</pattern> <template> <srai><star/>好不好</srai></template> </category>
+  <category><pattern>* 行 不 行</pattern> <template> <srai><star/>好不好</srai></template> </category>
   <category><pattern>* 行 不 行 _</pattern> <template> <srai><star/>好不好</srai></template> </category>
   <category><pattern>* 怎 么 样 _</pattern> <template> <srai><star/>好不好</srai></template> </category>
   <category><pattern>* 怎 么 样</pattern> <template> <srai><star/>好不好</srai></template> </category>
   
   <category>
-    <pattern>* 好 不 好</pattern>
+    <pattern>*好不好</pattern>
     <template>
       <think><set name="star"><star index="1"/></set></think>
       <condition name="star">
@@ -68,7 +73,7 @@
 
 
   <category>
-    <pattern>* 行 不 行</pattern>
+    <pattern>*行不行</pattern>
     <template>
       <think><set name="star"><star index="1"/></set></think>
       <condition name="star">

@@ -17,7 +17,7 @@ from wechatpy.exceptions import InvalidSignatureException
 from wechatpy.replies import ImageReply
 from .utils import image_process, weChatClient
 from datetime import datetime
-from weixin.plugins.talkbot import respond
+from weixin.talkbot import respond
 
 logger = logging.getLogger('app')
 
@@ -95,6 +95,10 @@ class Info(View):
         if msg.type == 'text':
             logger.info('message type text from %s', msg.source)
             response = respond(msg.content, msg.source)
+            if response:
+                pass
+            else:
+                response = '你说的我接不上啊，试着夸夸我鸭'
 
             reply = create_reply(response, msg, render=True)
             logger.info('Replied to %s with "%s"', msg.source, response)
@@ -153,9 +157,12 @@ class Notify(View):
 
 class Test(View):
     def get(self, request):
-        msg = request.args.get('msg')
-        session = request.session
+        msg = request.GET.get('msg')
+        logger.info('msg: %s' % msg)
+        session = request.user.pk
+        logger.info('session %s' % session)
         response = respond(msg, session)
+        logger.info(response)
         return HttpResponse(response)
 
 

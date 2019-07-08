@@ -2,7 +2,7 @@
 
 import os
 import sys
-from .. import aiml
+import aiml
 
 from django.conf import settings
 
@@ -36,7 +36,11 @@ def test(data, msg=None, bot=None):
 
 
 def respond(data, session=None):
-    return talkbot.respond(data, session).encode('utf-8')
+
+    resp = talkbot.respond(data, session)
+    if ' ' in resp:
+        resp = ''.join(resp.split(' '))
+    return resp
 
 
 if __name__ == '__main__':
