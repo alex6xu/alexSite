@@ -264,7 +264,7 @@ class AimlHandler(ContentHandler):
 				self._skipCurrentCategory = True
 			
 	def _characters(self, ch):
-		text = ch
+		text = str(ch)
 		if self._state == self._STATE_InsidePattern:
 			self._currentPattern += text
 		elif self._state == self._STATE_InsideThat:

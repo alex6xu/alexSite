@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """This file contains the public interface to the aiml module."""
-from . import AimlParser
-from . import DefaultSubs
-from . import Utils
-from .PatternMgr import PatternMgr
-from .WordSub import WordSub
+import AimlParser
+import DefaultSubs
+import Utils
+from PatternMgr import PatternMgr
+from WordSub import WordSub
 
 from configparser import ConfigParser
 import copy
@@ -481,7 +481,8 @@ class Kernel(object):
         last entry) must now include both 'name' and 'value'
         attributes.
 
-        """        
+        """
+        print('_processCondition')
         attr = None
         response = ""
         attr = elem[1]
@@ -576,7 +577,8 @@ class Kernel(object):
         <formal> elements process their contents recursively, and then
         capitalize the first letter of each word of the result.
 
-        """                
+        """
+        print('_processFormal')
         response = ""
         for e in elem[2:]:
             response += self._processElement(e, sessionID)
@@ -621,7 +623,8 @@ class Kernel(object):
         descided how to define my implementation, so right now
         <gossip> behaves identically to <think>.
 
-        """        
+        """
+        print('_processGossip')
         return self._processThink(elem, sessionID)
 
     # <id>
@@ -647,7 +650,8 @@ class Kernel(object):
         <input> elements return an entry from the input history for
         the current session.
 
-        """        
+        """
+        print('_processInput')
         inputHistory = self.getPredicate(self._inputHistory, sessionID)
         try: index = int(elem[1]['index'])
         except: index = 1
@@ -680,6 +684,7 @@ class Kernel(object):
         treat the result as an AIML file to open and learn.
 
         """
+        print('_processLearn')
         filename = ""
         for e in elem[2:]:
             filename += self._processElement(e, sessionID)
@@ -716,7 +721,7 @@ class Kernel(object):
         response = ""
         for e in elem[2:]:
             response += self._processElement(e, sessionID)
-        return string.lower(response)
+        return response.lower()
 
     # <person>
     def _processPerson(self,elem, sessionID):
@@ -794,9 +799,9 @@ class Kernel(object):
             response += self._processElement(e, sessionID)
         try:
             response = response.strip()
-            words = string.split(response, " ", 1)
-            words[0] = string.capitalize(words[0])
-            response = string.join(words)
+            words = response.split(" ", 1)
+            words[0] = words[0].capitalize()
+            response = ''.join(words)
             return response
         except IndexError: # response was empty
             return ""
@@ -850,6 +855,7 @@ class Kernel(object):
         returned.
 
         """
+        print('process srai')
         newInput = ""
         for e in elem[2:]:
             newInput += self._processElement(e, sessionID)
@@ -918,11 +924,11 @@ class Kernel(object):
         except RuntimeError as msg:
             if self._verboseMode:
                 err = "WARNING: RuntimeError while processing \"system\" element:\n%s\n" % msg.encode(self._textEncoding, 'replace')
-                sys.stderr.write(err)
+                print(err)
             return "There was an error while computing my response.  Please inform my botmaster."
         for line in out:
             response += line + "\n"
-        response = string.join(response.splitlines()).strip()
+        response = ' '.join(response.splitlines()).strip()
         return response
 
     # <template>
@@ -1048,15 +1054,19 @@ class Kernel(object):
         by a "*" in the current category's <topic> pattern.
 
         """
-        try: index = int(elem[1]['index'])
-        except KeyError: index = 1
+        try:
+            index = int(elem[1]['index'])
+        except KeyError:
+            index = 1
         # fetch the user's last input
         inputStack = self.getPredicate(self._inputStack, sessionID)
         input = self._subbers['normal'].sub(inputStack[-1])
         # fetch the Kernel's last response (for 'that' context)
         outputHistory = self.getPredicate(self._outputHistory, sessionID)
-        try: that = self._subbers['normal'].sub(outputHistory[-1])
-        except: that = "" # there might not be any output yet
+        try:
+            that = self._subbers['normal'].sub(outputHistory[-1])
+        except:
+            that = ""  # there might not be any output yet
         topic = self.getPredicate("topic", sessionID)
         response = self._brain.star("topicstar", input, that, topic, index)
         return response
@@ -1073,7 +1083,7 @@ class Kernel(object):
         response = ""
         for e in elem[2:]:
             response += self._processElement(e, sessionID)
-        return string.upper(response)
+        return response.upper()
 
     # <version>
     def _processVersion(self,elem, sessionID):

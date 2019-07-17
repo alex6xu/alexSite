@@ -32,4 +32,7 @@ def sentences(s):
 if __name__ == "__main__":
     # sentences
     sents = sentences("First.  Second, still?  Third and Final!  Well, not really")
+    sents2 = sentences('你好吗？ 我喜欢你')
+    print(sents)
+    print(sents2)
     assert(len(sents) == 4)
